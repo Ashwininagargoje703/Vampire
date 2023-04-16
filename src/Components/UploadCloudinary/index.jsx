@@ -10,7 +10,7 @@ const cloudinary = new Cloudinary({
   },
 });
 
-function App() {
+function FileUploadOnCloudinary() {
   const [uploadedImageUrl, setUploadedImageUrl] = useState(null);
 
   const handleUploadSuccess = (response) => {
@@ -36,4 +36,4 @@ function App() {
   );
 }
 
-export default fileUploadOnCloudinary;
+export default FileUploadOnCloudinary;
