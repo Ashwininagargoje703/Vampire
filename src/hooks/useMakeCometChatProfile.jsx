@@ -2,6 +2,7 @@ import { CometChat } from "@cometchat-pro/chat";
 
 export default function useMakeCometChatProfile() {
   let authKey = "4d5e5287d062275825e36a9a82f4c8204b659f4b";
+
   const createCommetChatUser = (usertomake) => {
     let uid = usertomake?.username;
     let name = usertomake?.First_Name + " " + usertomake?.last_name;
