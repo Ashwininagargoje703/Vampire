@@ -17,8 +17,8 @@ function App() {
   };
 
   useEffect(() => {
-    createCommetChatUser(user);
-    // loginCommetChatUser(user);
+    // createCommetChatUser(user);
+    loginCommetChatUser(user);
   }, []);
 
   return (
