@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { CometChat } from "@cometchat-pro/chat";
+import { BrowserRouter } from "react-router-dom";
 
 const appID = "237083d8bdec245c";
 const region = "EU";
@@ -25,7 +26,9 @@ CometChat.init(appID, appSetting).then(
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>
 );
 

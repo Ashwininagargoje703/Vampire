@@ -1,12 +1,8 @@
 import React from "react";
 import HomePage from "../../Components/home";
 
-function App() {
-  return (
-    <>
-      <HomePage />
-    </>
-  );
+function HomeMainPage() {
+  return <HomePage />;
 }
 
-export default App;
+export default HomeMainPage;

@@ -1,4 +1,4 @@
-import HomePageRoute from "./home-page/HomePafeRoute";
+import HomePageRoute from "./home-page/HomepageRoute";
 
 const ROUTES = [HomePageRoute];
 

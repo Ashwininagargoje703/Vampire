@@ -1,13 +1,8 @@
 import React, { Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
-import HomePage from "./Components/home";
+import PropTypes from "prop-types";
+import { Navigate, Route, Routes } from "react-router-dom";
 
-function App() {
-  const routes = [
-    { path: "/", component: HomePage },
-    // ...
-  ];
-
+const AppRoutes = ({ routes }) => {
   return (
     <Routes>
       {routes.map((route) => (
@@ -21,8 +16,19 @@ function App() {
           }
         />
       ))}
+      {/* Add a fallback route */}
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
-}
+};
 
-export default App;
+AppRoutes.propTypes = {
+  routes: PropTypes.arrayOf(
+    PropTypes.shape({
+      path: PropTypes.string.isRequired,
+      component: PropTypes.elementType.isRequired,
+    })
+  ).isRequired,
+};
+
+export default AppRoutes;
