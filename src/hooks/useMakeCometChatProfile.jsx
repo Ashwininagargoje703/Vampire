@@ -5,8 +5,8 @@ export default function useMakeCometChatProfile() {
 
   const createCommetChatUser = (usertomake) => {
     let uid = usertomake?.username;
-    let name = usertomake?.First_Name + " " + usertomake?.last_name;
-    let avtar = usertomake?.userpic_url;
+    let name = usertomake?.firstName + " " + usertomake?.lastName;
+    let avtar = usertomake?.avatar;
 
     let user = new CometChat.User(uid);
     user.setName(name);
