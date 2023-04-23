@@ -153,7 +153,6 @@ function App({ isAuthenticate, setAuth }) {
         </Box>
       </Box> */}
       <HomeMainPage />
-      {/* <Footer /> */}
     </>
   );
 }
