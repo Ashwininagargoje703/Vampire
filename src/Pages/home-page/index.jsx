@@ -5,6 +5,10 @@ import NavbarApp from "../../Components/before-login-home/navbar";
 import SearchBox from "../../Components/search";
 import Footer from "../../Components/before-login-home/footer";
 import MobileMessageIcon from "../../Components/ChatIcon";
+import JobPostCard from "../../Components/Find-Job/job-post-card";
+import RecipeReviewCard from "../../Components/Find-Job/Job-more-info";
+import JobMoreInfoCard from "../../Components/Find-Job/Job-more-info";
+import FindJob from "../../Components/Find-Job";
 
 function HomeMainPage() {
   return (
@@ -37,6 +41,9 @@ function HomeMainPage() {
         >
           <MobileMessageIcon />
         </Box> */}
+        {/* <JobPostCard /> */}
+        <FindJob />
+
         <Box sx={{ bottom: 0, position: "fixed" }}>
           <hr />
           <Footer />
