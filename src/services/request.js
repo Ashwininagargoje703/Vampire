@@ -1,5 +1,5 @@
+import { backend_url } from "../http-backend";
 import Request from "./";
-import { backend_url } from "../http-common";
 // let token = sessionStorage.getItem("token");
 
 const ACCEPT_TYPE = "application/json";

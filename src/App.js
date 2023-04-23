@@ -17,6 +17,7 @@ import SearchBox from "./Components/search";
 import BeforeLogin from "./Components/before-login-home";
 import HomeMainPage from "./Pages/home-page";
 import Footer from "./Components/before-login-home/footer";
+import FindJob from "./Components/Find-Job";
 
 function App({ isAuthenticate, setAuth }) {
   const [Name, setName] = useState(String);
@@ -152,7 +153,8 @@ function App({ isAuthenticate, setAuth }) {
           )}
         </Box>
       </Box> */}
-      <HomeMainPage />
+      {/* <HomeMainPage /> */}
+      <FindJob />
     </>
   );
 }
