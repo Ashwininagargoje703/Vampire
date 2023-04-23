@@ -46,7 +46,7 @@ function HomeMainPage() {
 
         <Box sx={{ bottom: 0, position: "fixed" }}>
           <hr />
-          <Footer />
+          {/* <Footer /> */}
         </Box>
       </Box>
     </>

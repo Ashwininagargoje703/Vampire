@@ -121,7 +121,7 @@ export default function NavbarApp() {
           }}
         >
           <Link
-            to="/signup"
+            to="/login"
             style={{ textDecoration: "none", color: "inherit" }}
           >
             Sign In

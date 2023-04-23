@@ -18,6 +18,7 @@ import BeforeLogin from "./Components/before-login-home";
 import HomeMainPage from "./Pages/home-page";
 import Footer from "./Components/before-login-home/footer";
 import FindJob from "./Components/Find-Job";
+import { SnackbarProvider, VariantType, useSnackbar } from 'notistack';
 
 function App({ isAuthenticate, setAuth }) {
   const [Name, setName] = useState(String);
@@ -70,7 +71,16 @@ function App({ isAuthenticate, setAuth }) {
     }
   };
   return (
+    <SnackbarProvider maxSnack={3}
+    //  iconVariant={{
+    //   success: '✅',
+    //   error: '✖️',
+    //   warning: '⚠️',
+    //   info: 'ℹ️',
+    // }}
+    >
     <>
+    <AppRoutes routes={ROUTES}/>
       {/* <Box>
         <h1 className="h0">Login With OTP 😍</h1>
         <img
@@ -153,9 +163,10 @@ function App({ isAuthenticate, setAuth }) {
           )}
         </Box>
       </Box> */}
-      {/* <HomeMainPage /> */}
-      <FindJob />
+      <HomeMainPage />
+      {/* <FindJob /> */}
     </>
+    </SnackbarProvider>
   );
 }
 
