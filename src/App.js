@@ -9,13 +9,15 @@ import IconButton from "@mui/material/IconButton";
 import { useTheme, ThemeProvider, createTheme } from "@mui/material/styles";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
+import AppRoutes from "./app-routes";
+import ROUTES from "./Pages/routes";
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
 function App({ isAuthenticate, setAuth }) {
   return (
     <>
-      <HomeMainPage />
+      <AppRoutes routes={ROUTES} />
     </>
   );
 }

@@ -50,8 +50,8 @@ const JobSearch = () => {
         <TextField
           fullWidth
           placeholder="Where city, state or pin code"
-          value={location}
           onChange={handleTitleChange}
+          value={title}
           sx={{
             width: 400,
             border: "1px solid yellowgreen",
@@ -70,7 +70,7 @@ const JobSearch = () => {
         <TextField
           fullWidth
           placeholder="What Job title, keywords, or company"
-          value={title}
+          value={location}
           sx={{
             width: 400,
             border: "1px solid yellowgreen",
