@@ -10,11 +10,10 @@ function FindJob() {
   };
 
   return (
-    <div style={{ display: "flex" }}>
-      <div style={{ flex: 1, padding: "1rem" }}>
+    <div style={{ display: "flex", height: "100vh" }}>
+      <div style={{ flex: 1 }}>
         <div
           style={{
-            background: "lightblue",
             padding: "1rem",
             cursor: "pointer",
           }}
@@ -24,8 +23,8 @@ function FindJob() {
         </div>
       </div>
       {isCardOpen && (
-        <div style={{ flex: 1, padding: "1rem" }}>
-          <div style={{ background: "lightgreen", padding: "1rem" }}>
+        <div style={{ flex: 1 }}>
+          <div style={{ padding: "1rem" }}>
             <JobPostMoreInfoCard />
           </div>
         </div>

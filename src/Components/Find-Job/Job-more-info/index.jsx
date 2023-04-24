@@ -12,9 +12,9 @@ import { BsFillBagPlusFill } from "react-icons/bs";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 const JobPostMoreInfoCard = () => {
   return (
-    <>
-      <Card sx={{ p: 2, border: "1px solid gary", height: "80vh" }}>
-        <Box>
+    <Box sx={{ height: "100vh" }}>
+      <Card sx={{ p: 2, border: "1px solid gary", height: "100vh" }}>
+        <Box p={2} mb={1}>
           <Typography fontSize={18} fontWeight={600}>
             Web Designer
           </Typography>
@@ -24,7 +24,7 @@ const JobPostMoreInfoCard = () => {
             You must create an Indeed account before continuing to the company
             website to apply
           </Typography>
-          <Box>
+          <Box mt={1} gap={4} display={"flex"}>
             <Button
               sx={{
                 backgroundColor: "#2557a7",
@@ -48,14 +48,15 @@ const JobPostMoreInfoCard = () => {
         </Box>
         <Divider color={"black"} />
 
-        <Box sx={{ overflow: "scroll" }}>
+        <Box sx={{ overflowY: "scroll", height: "60vh" }}>
           <Typography fontSize={18} fontWeight={600}>
             Job details
           </Typography>
+          <br />
           <Typography fontWeight={600}>
             <BsFillBagPlusFill /> {"  "} Job type
           </Typography>
-          <Box display="flex" gap={3}>
+          <Box display="flex" gap={3} mt={1} mb={2}>
             <Chip label="Fresher" />
             <Chip label="Frelance" />
           </Box>
@@ -110,7 +111,7 @@ const JobPostMoreInfoCard = () => {
           </ul>
         </Box>
       </Card>
-    </>
+    </Box>
   );
 };
 

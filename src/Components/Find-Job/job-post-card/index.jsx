@@ -22,9 +22,9 @@ const JobPostCard = () => {
     fetchData();
   }, []);
   return (
-    <>
+    <Box sx={{ height: "100vh", overflowY: "scroll" }}>
       {data?.map((data, idx) => (
-        <Card sx={{ p: 2, border: "1px solid gary" }}>
+        <Card sx={{ p: 2, mb: 2, border: "1px solid gray" }}>
           <Typography fontSize={18} fontWeight={600}>
             {data?.title}
           </Typography>
@@ -36,14 +36,16 @@ const JobPostCard = () => {
           </Typography>
           {data?.responsibilities && (
             <ul style={{ listStyleType: "circle" }}>
-              {data.responsibilities.map((responsibility, index) => (
-                <li key={index}>{responsibility}</li>
-              ))}
+              {data.responsibilities
+                .slice(0, 3)
+                .map((responsibility, index) => (
+                  <li key={index}>{responsibility}</li>
+                ))}
             </ul>
           )}
         </Card>
       ))}
-    </>
+    </Box>
   );
 };
 
