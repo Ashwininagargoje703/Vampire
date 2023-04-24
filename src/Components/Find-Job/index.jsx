@@ -22,13 +22,11 @@ function FindJob() {
           <JobPostCard />
         </div>
       </div>
-      {isCardOpen && (
-        <div style={{ flex: 1 }}>
-          <div style={{ padding: "1rem" }}>
-            <JobPostMoreInfoCard />
-          </div>
+      <div style={{ flex: 1 }}>
+        <div style={{ padding: "1rem" }}>
+          <JobPostMoreInfoCard />
         </div>
-      )}
+      </div>
     </div>
   );
 }

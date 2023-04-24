@@ -6,25 +6,39 @@ import { getRequest } from "../../../services/request";
 const JobPostCard = () => {
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    function fetchData() {
-      getRequest({
-        url: `https://vampire.up.railway.app/post/getAllPublicPost`,
+  function fetchData() {
+    getRequest({
+      url: `https://vampire.up.railway.app/post/getAllPublicPost`,
+    })
+      .then((res) => {
+        setData(res?.data?.data);
+        console.log("hello res", res.data);
       })
-        .then((res) => {
-          setData(res?.data?.data);
-          console.log("hello res", res.data);
-        })
-        .catch((e) => {
-          setData([]);
-        });
-    }
+      .catch((e) => {
+        setData([]);
+      });
+  }
+  useEffect(() => {
     fetchData();
   }, []);
+  const [jobId, setJobId] = useState(0);
+
+  const handleJobClick = (jobId) => {
+    // Store jobId in localStorage
+    localStorage.setItem("jobId", jobId);
+    // Set jobId in state
+    setJobId(jobId);
+    // Perform any other action with jobId as needed
+  };
+
   return (
     <Box sx={{ height: "100vh", overflowY: "scroll" }}>
       {data?.map((data, idx) => (
-        <Card sx={{ p: 2, mb: 2, border: "1px solid gray" }}>
+        <Card
+          sx={{ p: 2, mb: 2, border: "1px solid gray" }}
+          key={data?._id}
+          onClick={() => handleJobClick(data?._id)}
+        >
           <Typography fontSize={18} fontWeight={600}>
             {data?.title}
           </Typography>
@@ -43,6 +57,9 @@ const JobPostCard = () => {
                 ))}
             </ul>
           )}
+          <Button variant="outlined" color="primary">
+            Save Job
+          </Button>
         </Card>
       ))}
     </Box>
