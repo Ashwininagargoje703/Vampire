@@ -10,30 +10,47 @@ import {
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import useMakeCometChatProfile from "../../hooks/useMakeCometChatProfile";
 
+import { SnackbarProvider, VariantType, useSnackbar } from 'notistack';
+import axios from 'axios';
+
 function Login() {
+  const { enqueueSnackbar } = useSnackbar();
   const [username, setUsername] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [avatar, setAvatar] = useState("");
+  // const [firstName, setFirstName] = useState("");
+  // const [lastName, setLastName] = useState("");
+  // const [avatar, setAvatar] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const { createCommetChatUser, loginCommetChatUser } =
     useMakeCometChatProfile();
 
-  const handleFormSubmit = (e) => {
+  var showLoginSuccessSnack = (message, variant) => {
+    enqueueSnackbar(message, { variant });
+  };
+
+  const handleFormSubmit =async (e) => {
     e.preventDefault();
 
     const user = {
       username,
-      firstName,
-      lastName,
-      avatar,
+      // firstName,
+      // lastName,
+      // avatar,
       password,
     };
 
-    createCommetChatUser(user);
-    loginCommetChatUser(user);
+    console.log(user)
+    // createCommetChatUser(user);
+    // loginCommetChatUser(user);
+    let userInfo =await axios.post("https://vampire.up.railway.app/admin/login",{userName:username, password:password})
+    if(userInfo.data.success && userInfo?.data?.data?.token){
+      showLoginSuccessSnack('login Successful', 'success')
+    }else{
+      showLoginSuccessSnack(userInfo?.data?.message ?? 'invalid inputs', 'error')
+    }
+    console.log(userInfo)
+
   };
 
   const handleTogglePasswordVisibility = () => {
@@ -56,30 +73,30 @@ function Login() {
               variant="outlined"
               margin="normal"
             />
-            <TextField
+            {/* <TextField
               fullWidth
               label="First Name"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
               variant="outlined"
               margin="normal"
-            />
-            <TextField
+            /> */}
+            {/* <TextField
               fullWidth
               label="Last Name"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
               variant="outlined"
               margin="normal"
-            />
-            <TextField
+            /> */}
+            {/* <TextField
               fullWidth
               label="Avatar URL"
               value={avatar}
               onChange={(e) => setAvatar(e.target.value)}
               variant="outlined"
               margin="normal"
-            />
+            /> */}
             <TextField
               fullWidth
               label="Password"
@@ -100,8 +117,8 @@ function Login() {
               }}
             />
             <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
-              <Button variant="contained" color="primary" type="submit">
-                Create Account
+              <Button variant="contained" color="primary" type="submit" onSubmit={handleFormSubmit}>
+                Login
               </Button>
             </Box>
           </form>
