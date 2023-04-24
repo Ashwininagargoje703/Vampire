@@ -32,10 +32,22 @@ const JobPostCard = () => {
   };
 
   return (
-    <Box sx={{ height: "100vh", overflowY: "scroll" }}>
+    <Box
+      sx={{
+        height: "100vh",
+        overflowY: "scroll",
+        "&::-webkit-scrollbar": {
+          width: "0.3em" /* Set width of scrollbar */,
+          background: "#F5F5F5" /* Set background color of scrollbar */,
+        },
+        "&::-webkit-scrollbar-thumb": {
+          backgroundColor: "yellowgreen" /* Set color of scrollbar thumb */,
+        },
+      }}
+    >
       {data?.map((data, idx) => (
         <Card
-          sx={{ p: 2, mb: 2, border: "1px solid gray" }}
+          sx={{ p: 2, mb: 2, border: "1px solid #d4d2d0" }}
           key={data?._id}
           onClick={() => handleJobClick(data?._id)}
         >

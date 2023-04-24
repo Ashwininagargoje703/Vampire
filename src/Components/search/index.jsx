@@ -5,7 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import Button from "@mui/material/Button";
 import { getRequest } from "../../services/request";
-
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 const JobSearch = () => {
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
@@ -51,12 +51,16 @@ const JobSearch = () => {
           fullWidth
           placeholder="Where city, state or pin code"
           value={location}
-          onChange={handleLocationChange}
-          sx={{ Width: "150px" }}
+          onChange={handleTitleChange}
+          sx={{
+            width: 400,
+            border: "1px solid yellowgreen",
+            borderRadius: "4px",
+          }}
           InputProps={{
             endAdornment: (
               <IconButton onClick={handleSearch} edge="end">
-                <SearchIcon />
+                <SearchIcon sx={{ fontSize: 17 }} />
               </IconButton>
             ),
           }}
@@ -67,11 +71,20 @@ const JobSearch = () => {
           fullWidth
           placeholder="What Job title, keywords, or company"
           value={title}
-          onChange={handleTitleChange}
+          sx={{
+            width: 400,
+            border: "1px solid yellowgreen",
+            borderRadius: "4px",
+            "& .MuiInputBase-input:focus": {
+              // Define styles for focused state
+              color: "yellowgreen", // Change color to blue for focused state
+            },
+          }}
+          onChange={handleLocationChange}
           InputProps={{
             endAdornment: (
-              <IconButton onClick={handleSearch} edge="end">
-                <SearchIcon />
+              <IconButton edge="end">
+                <LocationOnIcon sx={{ fontSize: 17 }} />
               </IconButton>
             ),
           }}
@@ -79,14 +92,14 @@ const JobSearch = () => {
       </Box>
       <Button
         sx={{
-          backgroundColor: "#2557a7",
+          backgroundColor: "yellowgreen",
           color: "white",
           fontWeight: 600,
           borderRadius: "8px",
           textTransform: "none",
           p: 1.5,
           "&:hover": {
-            backgroundColor: "#2557a7",
+            backgroundColor: "yellowgreen",
             color: "white",
           },
         }}

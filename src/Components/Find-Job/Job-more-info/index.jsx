@@ -33,7 +33,13 @@ const JobPostMoreInfoCard = () => {
   return (
     <Box sx={{ height: "100vh" }}>
       {data.length > 0 && (
-        <Card sx={{ p: 2, border: "1px solid gary", height: "100vh" }}>
+        <Card
+          sx={{
+            p: 2,
+            height: "100vh",
+            border: "1px solid #d4d2d0",
+          }}
+        >
           <Box p={2} mb={1}>
             <Typography fontSize={18} fontWeight={600}>
               {data[0]?.title}
@@ -47,14 +53,14 @@ const JobPostMoreInfoCard = () => {
             <Box mt={1} gap={4} display={"flex"}>
               <Button
                 sx={{
-                  backgroundColor: "#2557a7",
+                  backgroundColor: "yellowgreen",
                   color: "white",
                   fontWeight: 600,
                   borderRadius: "8px",
                   textTransform: "none",
                   p: 1.5,
                   "&:hover": {
-                    backgroundColor: "#2557a7",
+                    backgroundColor: "yellowgreen",
                     color: "white",
                   },
                 }}
@@ -68,7 +74,21 @@ const JobPostMoreInfoCard = () => {
           </Box>
           <Divider color={"black"} />
 
-          <Box sx={{ overflowY: "scroll", height: "60vh" }}>
+          <Box
+            p={2}
+            sx={{
+              overflowY: "scroll",
+              "&::-webkit-scrollbar": {
+                width: "0.3em" /* Set width of scrollbar */,
+                background: "#F5F5F5" /* Set background color of scrollbar */,
+              },
+              "&::-webkit-scrollbar-thumb": {
+                backgroundColor:
+                  "yellowgreen" /* Set color of scrollbar thumb */,
+              },
+              height: "70vh",
+            }}
+          >
             <Typography fontSize={18} fontWeight={600}>
               Job details
             </Typography>
@@ -80,8 +100,12 @@ const JobPostMoreInfoCard = () => {
               <Chip label="Fresher" />
               <Chip label="Frelance" />
             </Box>
-            <Typography fontWeight={600} mb={1}>
-              Salary:{data[0]?.salaryStart} -{data[0].salaryEnd}Lpa
+            <Typography fontWeight={600} mb={2}>
+              Salary: {data[0]?.salaryStart}-{data[0].salaryEnd} LPA{" "}
+              {data[0]?.salaryType}
+            </Typography>
+            <Typography fontWeight={600} mb={2}>
+              Shift and schedule: {data[0]?.shift}
             </Typography>
             <Typography fontWeight={600}>Qualification</Typography>
             {data[0]?.qualifications && (
@@ -105,26 +129,6 @@ const JobPostMoreInfoCard = () => {
                 ))}
               </ul>
             )}
-            <Typography fontWeight={600}>
-              Required Education, Skills and Qualifications:
-            </Typography>
-            <ul>
-              <li>Strong knowledge of JavaScript and React JS</li>
-              <li>Working knowledge of Node.js and Express</li>
-              <li>
-                Portfolio of work required. Include examples of all areas of
-                frontend development
-              </li>
-            </ul>
-            <Typography fontWeight={600}> Our Stack</Typography>
-            <ul>
-              <li>Strong knowledge of JavaScript and React JS</li>
-              <li>Working knowledge of Node.js and Express</li>
-              <li>
-                Portfolio of work required. Include examples of all areas of
-                frontend development
-              </li>
-            </ul>
           </Box>
         </Card>
       )}
