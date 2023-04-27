@@ -6,6 +6,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import Button from "@mui/material/Button";
 import { getRequest } from "../../services/request";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import FindJob from "../Find-Job";
 const JobSearch = () => {
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
@@ -37,88 +38,86 @@ const JobSearch = () => {
   }, []);
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        gap: 5,
-        textAlign: "center",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Box className="search_input">
-        <TextField
-          fullWidth
-          placeholder="Where city, state or pin code"
-          onChange={handleTitleChange}
-          value={title}
-          sx={{
-            width: 400,
-            border: "1px solid yellowgreen",
-            borderRadius: "4px",
-          }}
-          InputProps={{
-            endAdornment: (
-              <IconButton onClick={handleSearch} edge="end">
-                <SearchIcon sx={{ fontSize: 17 }} />
-              </IconButton>
-            ),
-          }}
-        />
-      </Box>
-      <Box className="search_input">
-        <TextField
-          fullWidth
-          placeholder="What Job title, keywords, or company"
-          value={location}
-          sx={{
-            width: 400,
-            border: "1px solid yellowgreen",
-            borderRadius: "4px",
-            "& .MuiInputBase-input:focus": {
-              // Define styles for focused state
-              color: "yellowgreen", // Change color to blue for focused state
-            },
-          }}
-          onChange={handleLocationChange}
-          InputProps={{
-            endAdornment: (
-              <IconButton edge="end">
-                <LocationOnIcon sx={{ fontSize: 17 }} />
-              </IconButton>
-            ),
-          }}
-        />
-      </Box>
-      <Button
+    <>
+      <Box
         sx={{
-          backgroundColor: "yellowgreen",
-          color: "white",
-          fontWeight: 600,
-          borderRadius: "8px",
-          textTransform: "none",
-          p: 1.5,
-          "&:hover": {
+          display: "flex",
+          gap: 5,
+          textAlign: "center",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Box className="search_input">
+          <TextField
+            fullWidth
+            placeholder="What Job title, keywords, or company"
+            onChange={handleTitleChange}
+            value={title}
+            sx={{
+              width: 400,
+              border: "1px solid yellowgreen",
+              borderRadius: "4px",
+            }}
+            InputProps={{
+              endAdornment: (
+                <IconButton onClick={handleSearch} edge="end">
+                  <SearchIcon sx={{ fontSize: 17 }} />
+                </IconButton>
+              ),
+            }}
+          />
+        </Box>
+        <Box className="search_input">
+          <TextField
+            fullWidth
+            placeholder="Where city, state or pin code"
+            value={location}
+            sx={{
+              width: 400,
+              border: "1px solid yellowgreen",
+              borderRadius: "4px",
+              "& .MuiInputBase-input:focus": {
+                // Define styles for focused state
+                color: "yellowgreen", // Change color to blue for focused state
+              },
+            }}
+            onChange={handleLocationChange}
+            InputProps={{
+              endAdornment: (
+                <IconButton edge="end">
+                  <LocationOnIcon sx={{ fontSize: 17 }} />
+                </IconButton>
+              ),
+            }}
+          />
+        </Box>
+        <Button
+          sx={{
             backgroundColor: "yellowgreen",
             color: "white",
-          },
-        }}
-        onClick={handleSearch}
-      >
-        Find Job
-      </Button>
-      {showResults && searchResults && (
-        <Box mt={2}>
-          <h3>Search Results:</h3>
-          {searchResults.map((result, index) => (
-            <div key={index}>
-              <p>Title: {result.title}</p>
-              <p>Location: {result.location}</p>
-            </div>
-          ))}
-        </Box>
-      )}
-    </Box>
+            fontWeight: 600,
+            borderRadius: "8px",
+            textTransform: "none",
+            p: 1.5,
+            "&:hover": {
+              backgroundColor: "yellowgreen",
+              color: "white",
+            },
+          }}
+          onClick={handleSearch}
+        >
+          Find Job
+        </Button>
+      </Box>
+
+      <Box mt={2}>
+        <FindJob
+          searchResults={searchResults}
+          setSearchResults={setSearchResults}
+        />
+      </Box>
+    </>
   );
 };
 

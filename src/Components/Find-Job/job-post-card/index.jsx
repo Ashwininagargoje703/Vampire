@@ -3,7 +3,7 @@ import { Box, Button, Card, Typography } from "@mui/material";
 import { BsFillBagPlusFill } from "react-icons/bs";
 import { getRequest } from "../../../services/request";
 
-const JobPostCard = () => {
+const JobPostCard = ({ searchResults, setSearchResults }) => {
   const [data, setData] = useState([]);
 
   function fetchData() {
@@ -45,10 +45,10 @@ const JobPostCard = () => {
         },
       }}
     >
-      {data?.map((data, idx) => (
+      {searchResults?.map((data, idx) => (
         <Card
           sx={{ p: 2, mb: 2, border: "1px solid #d4d2d0" }}
-          key={data?._id}
+          key={searchResults?._id}
           onClick={() => handleJobClick(data?._id)}
         >
           <Typography fontSize={18} fontWeight={600}>

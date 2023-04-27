@@ -11,13 +11,15 @@ import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import AppRoutes from "./app-routes";
 import ROUTES from "./Pages/routes";
+import HomePage from "./Components/Home";
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
 function App({ isAuthenticate, setAuth }) {
   return (
     <>
-      <AppRoutes routes={ROUTES} />
+      {/* <AppRoutes routes={ROUTES} /> */}
+      <HomePage />
     </>
   );
 }

@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import JobPostCard from "./job-post-card";
 import JobPostMoreInfoCard from "./Job-more-info";
 
-function FindJob() {
+const FindJob = ({ searchResults, setSearchResults }) => {
+  console.log("searchResults", searchResults);
   const [isCardOpen, setCardOpen] = useState(false);
 
   const handleCardClick = () => {
@@ -19,7 +20,10 @@ function FindJob() {
           }}
           onClick={handleCardClick}
         >
-          <JobPostCard />
+          <JobPostCard
+            searchResults={searchResults}
+            setSearchResults={setSearchResults}
+          />
         </div>
       </div>
       <div style={{ flex: 1 }}>
@@ -29,6 +33,6 @@ function FindJob() {
       </div>
     </div>
   );
-}
+};
 
 export default FindJob;

@@ -4,6 +4,7 @@ import NavbarApp from "../../Components/before-login-home/navbar";
 import SearchBox from "../../Components/search";
 import FindJob from "../../Components/Find-Job";
 import Footer from "../../Components/before-login-home/footer";
+import JobSearch from "../../Components/search";
 
 function HomeMainPage() {
   return (
@@ -26,9 +27,8 @@ function HomeMainPage() {
         <Box sx={{ pt: "64px" }}>
           {" "}
           {/* Add padding top to push content below the fixed NavbarApp */}
-          <SearchBox />
+          <JobSearch />
           <br />
-          <FindJob />
         </Box>
         {/* <Footer /> */}
       </Box>
