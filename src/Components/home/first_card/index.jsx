@@ -4,6 +4,10 @@ import React, { useState } from "react";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 
 function FirstCardPage() {
+  const handleChange = () => {
+    window.location.href = "/jobsearch";
+  };
+
   return (
     <Box
       sx={{
@@ -29,6 +33,7 @@ function FirstCardPage() {
 
         <Box mt={2}>
           <Button
+            onClick={handleChange}
             sx={{
               backgroundColor: "yellowgreen",
               color: "white",

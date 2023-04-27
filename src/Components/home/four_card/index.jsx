@@ -21,6 +21,10 @@ function FourCardPage() {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const handleLoadMore = () => {
+    window.location.href = "/joblisting";
+  };
   return (
     <Box
       sx={{
@@ -53,6 +57,7 @@ function FourCardPage() {
         ))}
 
         <Button
+          onClick={handleLoadMore}
           sx={{
             backgroundColor: "white",
             border: "1px solid yellowgreen",

@@ -5,6 +5,7 @@ import SecondCardPage from "./second_card";
 import ThirdCardPage from "./third_card";
 import FourCardPage from "./four_card";
 import SixCardPage from "./six_card";
+import NavbarApp from "../before-login-home/navbar";
 
 function HomePage() {
   return (
@@ -13,7 +14,10 @@ function HomePage() {
         height: "100vh",
       }}
     >
-      <Box zIndex={"999999"}>
+      <Box>
+        <Box sx={{ position: "fixed", top: 0, zIndex: 99999, width: "100%" }}>
+          <NavbarApp />
+        </Box>
         <FirstCardPage />
         <SecondCardPage />
         <ThirdCardPage />

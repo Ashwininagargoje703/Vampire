@@ -1,7 +1,7 @@
 import { lazy } from "react";
 
 const JobDetailsPageRoute = {
-  path: "/jobdetails/:id",
+  path: "/joblisting",
   component: lazy(() => import("./index")),
 };
 

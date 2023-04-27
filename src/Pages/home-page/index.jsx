@@ -5,11 +5,12 @@ import SearchBox from "../../Components/search";
 import FindJob from "../../Components/Find-Job";
 import Footer from "../../Components/before-login-home/footer";
 import JobSearch from "../../Components/search";
+import HomePage from "../../Components/Home";
 
 function HomeMainPage() {
   return (
     <>
-      <Box
+      {/* <Box
         sx={{
           height: "100vh",
           overflowY: "auto", // Add overflowY to enable scrolling
@@ -23,15 +24,14 @@ function HomeMainPage() {
         </Box>
 
         {/* Fix NavbarApp at the top */}
-        <br />
+      {/* <br />
         <Box sx={{ pt: "64px" }}>
           {" "}
-          {/* Add padding top to push content below the fixed NavbarApp */}
           <JobSearch />
           <br />
         </Box>
-        {/* <Footer /> */}
-      </Box>
+      </Box> */}
+      <HomePage />
     </>
   );
 }
