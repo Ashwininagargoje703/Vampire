@@ -5,7 +5,7 @@ import SearchBox from "../../Components/search";
 import FindJob from "../../Components/Find-Job";
 import Footer from "../../Components/before-login-home/footer";
 import JobSearch from "../../Components/search";
-import HomePage from "../../Components/Home";
+import HomePage from "../../Components/home";
 
 function HomeMainPage() {
   return (
