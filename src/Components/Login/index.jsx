@@ -128,3 +128,53 @@
 // }
 
 // export default Login;
+
+import React, { useState } from "react";
+// import "./styles.css";
+import { GoogleLogin, GoogleLogout } from "react-google-login";
+
+export default function Login() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [url, setUrl] = useState("");
+  const [loginStatus, setLoginStatus] = useState(false);
+
+  const responseGoogle = (response) => {
+    console.log(response);
+    setName(response.profileObj.name);
+    setEmail(response.profileObj.email);
+    setUrl(response.profileObj.imageUrl);
+    setLoginStatus(true);
+  };
+  const logout = () => {
+    console.log("logout");
+    setLoginStatus(false);
+  };
+  return (
+    <div className="App">
+      <h1>Login with Google</h1>
+      {!loginStatus && (
+        <GoogleLogin
+          clientId="587734718261-jne0domt7krb8i9f9vq7b55kloeevqol.apps.googleusercontent.com"
+          buttonText="Login"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+          cookiePolicy={"single_host_origin"}
+        />
+      )}
+      {loginStatus && (
+        <div>
+          <h2>Welcome {name}</h2>
+          <h2>Email: {email}</h2>
+          <img src={url} alt={name} />
+          <br />
+          <GoogleLogout
+            clientId="587734718261-jne0domt7krb8i9f9vq7b55kloeevqol.apps.googleusercontent.com"
+            buttonText="Logout"
+            onLogoutSuccess={logout}
+          />
+        </div>
+      )}
+    </div>
+  );
+}
