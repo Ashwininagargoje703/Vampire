@@ -5,7 +5,7 @@ import logo from "./../../Components/assest/logo.png";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import axios from "axios";
 // import { useNavigate } from "react-router";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 export default function Login() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -102,7 +102,7 @@ export default function Login() {
           </Button>
         </Box>
 
-        <Typography mt={2}>Forgot Password?</Typography>
+        <Link mt={2} onClick={navigate('/forgot-password')}>Forgot Password?</Link>
       </Box>
     </>
   );

@@ -12,9 +12,9 @@ const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 function App({ isAuthenticate, setAuth }) {
   return (
     <>
-      {/* <AppRoutes routes={ROUTES} /> */}
+      <AppRoutes routes={ROUTES} />
       {/* <Register /> */}
-      <ForgotPassword />
+      {/* <ForgotPassword /> */}
       {/* <Login /> */}
       {/* <JobListing /> */}
     </>
