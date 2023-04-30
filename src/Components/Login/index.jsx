@@ -3,7 +3,36 @@ import React, { useState } from "react";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import logo from "./../../Components/assest/logo.png";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import axios from 'axios'
+// import { useNavigate } from "react-router";
+import { useNavigate } from 'react-router-dom';
 export default function Login() {
+  const [userName, setUserName] = useState('')
+  const [password, setPassword] = useState('')
+  const navigate = useNavigate()
+  // console.log(userName)
+  const handleSubmit = async () =>{
+    console.log('get hit here')
+    let loginData = {
+      userName,
+      password
+    }
+    
+    let userData =await axios.post("http://localhost:4000/admin/login", loginData )
+    console.log(userData.data.data)
+    
+    if(userData?.data?.data?.success && userData?.data?.data?.phoneNumber){
+      console.log('hit here only')
+      localStorage.setItem('serviceToken', userData.data.data.token);
+      localStorage.setItem('role', userData.data.data.role);
+      localStorage.setItem('userName', userData.data.data.phoneNumber);
+      localStorage.setItem('name', userData.data.data.name);
+      localStorage.setItem('isLoggedIn', 'true');
+
+    }
+
+    navigate("/login")
+  }
   return (
     <>
       <Box
@@ -31,12 +60,13 @@ export default function Login() {
             label="User Name"
             multiline
             maxRows={4}
+            onChange={(e)=>setUserName(e.target.value)}
           />
-          <TextField id="outlined-textarea" label="Password" multiline />
+          <TextField id="outlined-textarea" label="Password" onChange={(e)=>setPassword(e.target.value)} multiline />
         </Box>
 
         <Box>
-          <Button
+          <Button onClick={handleSubmit}
             sx={{
               backgroundColor: "yellowgreen",
               borderRadius: "4px",
