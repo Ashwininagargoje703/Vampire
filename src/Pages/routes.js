@@ -1,4 +1,5 @@
 import CometChatPageRoute from "./comet-chat-page/cometChatPageRoute";
+import ForgotPasswordRoute from "./forgot-password/ForgotPasswordRoute";
 import HomePageRoute from "./home-page/HomepageRoute";
 import JobDetailsPageRoute from "./job-details-page/JobDetailsPageRoute";
 import JobSearchPageRoute from "./job-search-page/JobSearchPageRoute";
@@ -12,6 +13,7 @@ const ROUTES = [
   UplodeImagPageRoute,
   JobDetailsPageRoute,
   JobSearchPageRoute,
+  ForgotPasswordRoute,
 ];
 
 export default ROUTES;

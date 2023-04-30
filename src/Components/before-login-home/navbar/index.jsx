@@ -2,7 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Avatar, Box, Typography } from "@mui/material";
 import logo from "../../../Components/assest/logo.png";
+import ProfileMenu from "./profile-dropdown";
 export default function NavbarApp() {
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
   return (
     <Box
       sx={{
@@ -94,21 +96,6 @@ export default function NavbarApp() {
             Post your resume
           </Link>
         </Box>
-        <Box
-          sx={{
-            fontSize: "1rem!important",
-            color: "#2557a7",
-            fontWeight: "700",
-            mt: 1,
-          }}
-        >
-          <Link
-            to="/login"
-            style={{ textDecoration: "none", color: "inherit" }}
-          >
-            Sign In
-          </Link>
-        </Box>
 
         <Box
           sx={{
@@ -124,23 +111,35 @@ export default function NavbarApp() {
           </Link>
         </Box>
 
-        <Box
-          sx={{
-            mt: 1,
-            "&:hover": {
-              borderBottom: "0.125rem solid transparent",
-              borderBottomColor: "#2557a7",
-            },
-          }}
-        >
-          <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
-            <Avatar
-              alt="p"
-              src="/static/images/avatar/1.jpg"
-              sx={{ width: 24, height: 24 }}
-            />
-          </Link>
-        </Box>
+        {isLoggedIn ? (
+          <Box
+            sx={{
+              mt: 1,
+              "&:hover": {
+                borderBottom: "0.125rem solid transparent",
+                borderBottomColor: "#2557a7",
+              },
+            }}
+          >
+            <ProfileMenu />
+          </Box>
+        ) : (
+          <Box
+            sx={{
+              fontSize: "1rem!important",
+              color: "#2557a7",
+              fontWeight: "700",
+              mt: 1,
+            }}
+          >
+            <Link
+              to="/login"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              Sign In
+            </Link>
+          </Box>
+        )}
       </Box>
     </Box>
   );

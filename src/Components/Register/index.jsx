@@ -3,38 +3,36 @@ import React, { useState } from "react";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import logo from "./../../Components/assest/logo.png";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import axios from "axios";
-// import { useNavigate } from "react-router";
 import { useNavigate } from "react-router-dom";
-export default function Login() {
+export default function Register() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   // console.log(userName)
-  const handleSubmit = async () => {
-    console.log("get hit here");
-    let loginData = {
-      userName,
-      password,
-    };
+  //   const handleSubmit = async () => {
+  //     console.log("get hit here");
+  //     let loginData = {
+  //       userName,
+  //       password,
+  //     };
 
-    let userData = await axios.post(
-      "https://vampire.up.railway.app/admin/login",
-      loginData
-    );
-    console.log(userData.data.data);
+  //     let userData = await axios.post(
+  //       "https://vampire.up.railway.app/admin/login",
+  //       loginData
+  //     );
+  //     console.log(userData.data.data);
 
-    if (userData) {
-      console.log("hit here only");
-      localStorage.setItem("serviceToken", userData.data.data.token);
-      localStorage.setItem("role", userData.data.data.role);
-      localStorage.setItem("userName", userData.data.data.phoneNumber);
-      localStorage.setItem("name", userData.data.data.name);
-      localStorage.setItem("isLoggedIn", "true");
-    }
+  //     if (userData) {
+  //       console.log("hit here only");
+  //       localStorage.setItem("serviceToken", userData.data.data.token);
+  //       localStorage.setItem("role", userData.data.data.role);
+  //       localStorage.setItem("userName", userData.data.data.phoneNumber);
+  //       localStorage.setItem("name", userData.data.data.name);
+  //       localStorage.setItem("isLoggedIn", "true");
+  //     }
 
-    navigate("/");
-  };
+  //     navigate("/");
+  //   };
   return (
     <>
       <Box
@@ -56,25 +54,32 @@ export default function Login() {
           <Typography fontSize={18}>Sign In</Typography>
         </Box>
 
-        <Box component="form" onSubmit={handleSubmit} display={"grid"} gap={3}>
-          <TextField
-            id="outlined-multiline-flexible"
-            label="User Name"
-            multiline
-            maxRows={4}
-            onChange={(e) => setUserName(e.target.value)}
-          />
-          <TextField
-            id="outlined-textarea"
-            label="Password"
-            onChange={(e) => setPassword(e.target.value)}
-            multiline
-          />
+        <Box
+          component="form"
+          // onSubmit={handleSubmit}
+          display={"grid"}
+          gap={3}
+        >
+          <Box display={"flex"} gap={2}>
+            <TextField
+              id="outlined-multiline-flexible"
+              label="Full Name"
+              sx={{ width: 250 }}
+            />
+            <TextField
+              id="outlined-textarea"
+              label="Phone Number / email"
+              sx={{ width: 250 }}
+            />
+          </Box>
+
+          <TextField id="outlined-textarea" label="Password" />
+          <TextField id="outlined-textarea" label=" Confirm Password" />
         </Box>
 
         <Box>
           <Button
-            onClick={handleSubmit}
+            // onClick={handleSubmit}
             sx={{
               backgroundColor: "yellowgreen",
               borderRadius: "4px",
@@ -98,7 +103,7 @@ export default function Login() {
               },
             }}
           >
-            Login
+            Register
           </Button>
         </Box>
 

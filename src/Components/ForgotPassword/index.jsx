@@ -3,38 +3,10 @@ import React, { useState } from "react";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import logo from "./../../Components/assest/logo.png";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import axios from "axios";
-// import { useNavigate } from "react-router";
 import { useNavigate } from "react-router-dom";
-export default function Login() {
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+export default function ForgotPassword() {
   const navigate = useNavigate();
-  // console.log(userName)
-  const handleSubmit = async () => {
-    console.log("get hit here");
-    let loginData = {
-      userName,
-      password,
-    };
 
-    let userData = await axios.post(
-      "https://vampire.up.railway.app/admin/login",
-      loginData
-    );
-    console.log(userData.data.data);
-
-    if (userData) {
-      console.log("hit here only");
-      localStorage.setItem("serviceToken", userData.data.data.token);
-      localStorage.setItem("role", userData.data.data.role);
-      localStorage.setItem("userName", userData.data.data.phoneNumber);
-      localStorage.setItem("name", userData.data.data.name);
-      localStorage.setItem("isLoggedIn", "true");
-    }
-
-    navigate("/");
-  };
   return (
     <>
       <Box
@@ -56,25 +28,51 @@ export default function Login() {
           <Typography fontSize={18}>Sign In</Typography>
         </Box>
 
-        <Box component="form" onSubmit={handleSubmit} display={"grid"} gap={3}>
-          <TextField
-            id="outlined-multiline-flexible"
-            label="User Name"
-            multiline
-            maxRows={4}
-            onChange={(e) => setUserName(e.target.value)}
-          />
-          <TextField
-            id="outlined-textarea"
-            label="Password"
-            onChange={(e) => setPassword(e.target.value)}
-            multiline
-          />
+        <Box
+          component="form"
+          // onSubmit={handleSubmit}
+          display={"grid"}
+          gap={3}
+        >
+          <Box display={"flex"} gap={2}>
+            <TextField
+              id="outlined-multiline-flexible"
+              label="User name"
+              sx={{ width: "69%" }}
+            />
+
+            <Button
+              sx={{
+                backgroundColor: "yellowgreen",
+                borderRadius: "4px",
+                color: "white",
+                p: 1.2,
+                pr: 4,
+                pl: 4,
+                fontWeight: 600,
+
+                "&:hover": {
+                  p: 1.2,
+                  pr: 4,
+                  fontWeight: 600,
+                  pl: 4,
+                  backgroundColor: "white",
+                  border: "1px solid yellowgreen",
+                  color: "yellowgreen",
+                  borderRadius: "4px",
+                },
+              }}
+            >
+              Send OTP
+            </Button>
+          </Box>
+
+          <TextField id="outlined-textarea" label="Password" />
+          <TextField id="outlined-textarea" label=" Confirm Password" />
         </Box>
 
         <Box>
           <Button
-            onClick={handleSubmit}
             sx={{
               backgroundColor: "yellowgreen",
               borderRadius: "4px",
@@ -98,11 +96,9 @@ export default function Login() {
               },
             }}
           >
-            Login
+            Submit
           </Button>
         </Box>
-
-        <Typography mt={2}>Forgot Password?</Typography>
       </Box>
     </>
   );
