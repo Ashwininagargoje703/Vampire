@@ -4,10 +4,43 @@ import { GoogleLogin, GoogleLogout } from "react-google-login";
 import logo from "./../../Components/assest/logo.png";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios';
 export default function Register() {
+  const [name, setName] = useState("");
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+      console.log(userName);
+      let createObj = {
+        name,
+        userName,
+        password,
+        userType:1
+      }
+      axios.post('http://localhost:4000/admin/register',createObj)
+      .then((res)=>{
+        console.log(res.data)
+        if(res.data.data.token){
+          axios.post("http://localhost:4000/admin/login",{userName,password}).then((item)=>{
+            if(item.data.data.token){
+              console.log("hit here only");
+              localStorage.setItem("serviceToken", item.data.data.token);
+              localStorage.setItem("role", item.data.data.role);
+              localStorage.setItem("userName", item.data.data.phoneNumber);
+              localStorage.setItem("name", item.data.data.name);
+              localStorage.setItem("isLoggedIn", "true")
+              navigate('/')
+            }
+
+          })
+        }
+      })
+      .catch((err)=>console.log(err))
+  };
 
   return (
     <Box
@@ -46,63 +79,73 @@ export default function Register() {
           <Typography fontSize={18}>Register</Typography>
         </Box>
 
-        <Box
-          component="form"
-          // onSubmit={handleSubmit}
-          display={"grid"}
-          gap={3}
-        >
+        <Box component="form" onSubmit={handleSubmit} display={"grid"} gap={3}>
           <Box display={"flex"} gap={2}>
             <TextField
+              onChange={(e) => setName(e.target.value)}
+              required
               id="outlined-multiline-flexible"
               label="Full Name"
               sx={{ width: 250 }}
             />
             <TextField
+              onChange={(e) => setUserName(e.target.value)}
+              required
               id="outlined-textarea"
               label="Phone Number / email"
               sx={{ width: 250 }}
             />
           </Box>
 
-          <TextField id="outlined-textarea" label="Password" />
-          <TextField id="outlined-textarea" label=" Confirm Password" />
-        </Box>
-
-        <Box>
-          <Button
-            // onClick={handleSubmit}
-            sx={{
-              backgroundColor: "yellowgreen",
-              borderRadius: "4px",
-              border: "1px solid yellowgreen",
-              color: "white",
-              mt: 4,
-              p: 1.2,
-              pr: 8,
-              pl: 8,
-              fontWeight: 600,
-
-              "&:hover": {
+          <TextField
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            id="outlined-textarea"
+            label="Password"
+          />
+          <TextField
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+            id="outlined-textarea"
+            label="Confirm Password"
+          />
+          <Box>
+            <Button
+              type="submit"
+              disabled={(!password.length || !confirmPassword.length) || (password != confirmPassword)}
+              sx={{
+                backgroundColor: "yellowgreen",
+                borderRadius: "4px",
+                border: "1px solid yellowgreen",
+                color: "white",
                 mt: 4,
                 p: 1.2,
                 pr: 8,
-                fontWeight: 600,
                 pl: 8,
-                backgroundColor: "white",
-                border: "1px solid yellowgreen",
-                color: "yellowgreen",
-                borderRadius: "4px",
-              },
-            }}
-          >
-            Register
-          </Button>
+                fontWeight: 600,
+
+                "&:hover": {
+                  mt: 4,
+                  p: 1.2,
+                  pr: 8,
+                  fontWeight: 600,
+                  pl: 8,
+                  backgroundColor: "white",
+                  border: "1px solid yellowgreen",
+                  color: "yellowgreen",
+                  borderRadius: "4px",
+                },
+              }}
+            >
+              Register
+            </Button>
+          </Box>
         </Box>
+
         <br />
-        <Link style={{ textDecoration: "none" }} to={"/forgot-password"}>
+        <Link style={{ textDecoration: "none" }} to={"/login"}>
           <Typography sx={{ fontSize: "16px", fontWeight: 600 }}>
-            Forgot Password?
+            Already have an account <i>Login</i>?
           </Typography>{" "}
         </Link>
       </Box>
