@@ -1,180 +1,71 @@
-// import { useState } from "react";
-// import {
-//   TextField,
-//   Button,
-//   Box,
-//   Grid,
-//   IconButton,
-//   Typography,
-// } from "@mui/material";
-// import { Visibility, VisibilityOff } from "@mui/icons-material";
-// import useMakeCometChatProfile from "../../hooks/useMakeCometChatProfile";
-
-// import axios from 'axios';
-
-// function Login() {
-//   const { enqueueSnackbar } = useSnackbar();
-//   const [username, setUsername] = useState("");
-//   // const [firstName, setFirstName] = useState("");
-//   // const [lastName, setLastName] = useState("");
-//   // const [avatar, setAvatar] = useState("");
-//   const [password, setPassword] = useState("");
-//   const [showPassword, setShowPassword] = useState(false);
-
-//   const { createCommetChatUser, loginCommetChatUser } =
-//     useMakeCometChatProfile();
-
-//   var showLoginSuccessSnack = (message, variant) => {
-//     enqueueSnackbar(message, { variant });
-//   };
-
-//   const handleFormSubmit =async (e) => {
-//     e.preventDefault();
-
-//     const user = {
-//       username,
-//       // firstName,
-//       // lastName,
-//       // avatar,
-//       password,
-//     };
-
-//     console.log(user)
-//     // createCommetChatUser(user);
-//     // loginCommetChatUser(user);
-//     let userInfo =await axios.post("https://vampire.up.railway.app/admin/login",{userName:username, password:password})
-//     if(userInfo.data.success && userInfo?.data?.data?.token){
-//       showLoginSuccessSnack('login Successful', 'success')
-//     }else{
-//       showLoginSuccessSnack(userInfo?.data?.message ?? 'invalid inputs', 'error')
-//     }
-//     console.log(userInfo)
-
-//   };
-
-//   const handleTogglePasswordVisibility = () => {
-//     setShowPassword(!showPassword);
-//   };
-
-//   return (
-//     <Box sx={{ display: "flex", justifyContent: "center", mt: 5 }}>
-//       <Grid container spacing={2} justifyContent="center">
-//         <Grid item xs={12} sm={8} md={6}>
-//           <Typography fontSize={18} fontWeight={600}>
-//             Login
-//           </Typography>
-//           <form onSubmit={handleFormSubmit}>
-//             <TextField
-//               fullWidth
-//               label="Username"
-//               value={username}
-//               onChange={(e) => setUsername(e.target.value)}
-//               variant="outlined"
-//               margin="normal"
-//             />
-//             {/* <TextField
-//               fullWidth
-//               label="First Name"
-//               value={firstName}
-//               onChange={(e) => setFirstName(e.target.value)}
-//               variant="outlined"
-//               margin="normal"
-//             /> */}
-//             {/* <TextField
-//               fullWidth
-//               label="Last Name"
-//               value={lastName}
-//               onChange={(e) => setLastName(e.target.value)}
-//               variant="outlined"
-//               margin="normal"
-//             /> */}
-//             {/* <TextField
-//               fullWidth
-//               label="Avatar URL"
-//               value={avatar}
-//               onChange={(e) => setAvatar(e.target.value)}
-//               variant="outlined"
-//               margin="normal"
-//             /> */}
-//             <TextField
-//               fullWidth
-//               label="Password"
-//               type={showPassword ? "text" : "password"}
-//               value={password}
-//               onChange={(e) => setPassword(e.target.value)}
-//               variant="outlined"
-//               margin="normal"
-//               InputProps={{
-//                 endAdornment: (
-//                   <IconButton
-//                     onClick={handleTogglePasswordVisibility}
-//                     edge="end"
-//                   >
-//                     {showPassword ? <VisibilityOff /> : <Visibility />}
-//                   </IconButton>
-//                 ),
-//               }}
-//             />
-//             <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
-//               <Button variant="contained" color="primary" type="submit" onSubmit={handleFormSubmit}>
-//                 Login
-//               </Button>
-//             </Box>
-//           </form>
-//         </Grid>
-//       </Grid>
-//     </Box>
-//   );
-// }
-
-// export default Login;
-
+import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
-// import "./styles.css";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
-
+import logo from "./../../Components/assest/logo.png";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 export default function Login() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [url, setUrl] = useState("");
-  const [loginStatus, setLoginStatus] = useState(false);
-
-  const responseGoogle = (response) => {
-    console.log(response);
-    setName(response.profileObj.name);
-    setEmail(response.profileObj.email);
-    setUrl(response.profileObj.imageUrl);
-    setLoginStatus(true);
-  };
-  const logout = () => {
-    console.log("logout");
-    setLoginStatus(false);
-  };
   return (
-    <div className="App">
-      <h1>Login with Google</h1>
-      {!loginStatus && (
-        <GoogleLogin
-          clientId="587734718261-jne0domt7krb8i9f9vq7b55kloeevqol.apps.googleusercontent.com"
-          buttonText="Login"
-          onSuccess={responseGoogle}
-          onFailure={responseGoogle}
-          cookiePolicy={"single_host_origin"}
-        />
-      )}
-      {loginStatus && (
-        <div>
-          <h2>Welcome {name}</h2>
-          <h2>Email: {email}</h2>
-          <img src={url} alt={name} />
-          <br />
-          <GoogleLogout
-            clientId="587734718261-jne0domt7krb8i9f9vq7b55kloeevqol.apps.googleusercontent.com"
-            buttonText="Logout"
-            onLogoutSuccess={logout}
+    <>
+      <Box
+        sx={{
+          maxWidth: 500,
+          backgroundColor: "white",
+          boxShadow: "1.05975px 4.23898px 7.97545px 4.43081px rgb(0 0 0 / 10%)",
+          border: "1.05975px solid rgba(9, 54, 121, 0.1)",
+          p: 4,
+          width: "100%",
+          textAlign: "center",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <img src={logo} alt="logo" />
+        <Box display={"flex"} mb={3} gap={1}>
+          <PersonOutlineIcon style={{ fontSize: 30, color: "yellowgreen" }} />
+          <Typography fontSize={18}>Sign In</Typography>
+        </Box>
+
+        <Box display={"grid"} gap={3}>
+          <TextField
+            id="outlined-multiline-flexible"
+            label="User Name"
+            multiline
+            maxRows={4}
           />
-        </div>
-      )}
-    </div>
+          <TextField id="outlined-textarea" label="Password" multiline />
+        </Box>
+
+        <Box>
+          <Button
+            sx={{
+              backgroundColor: "yellowgreen",
+              borderRadius: "4px",
+              color: "white",
+              mt: 4,
+              p: 1.2,
+              pr: 8,
+              pl: 8,
+              fontWeight: 600,
+
+              "&:hover": {
+                mt: 4,
+                p: 1.2,
+                pr: 8,
+                fontWeight: 600,
+                pl: 8,
+                backgroundColor: "white",
+                border: "1px solid yellowgreen",
+                color: "yellowgreen",
+                borderRadius: "4px",
+              },
+            }}
+          >
+            Login
+          </Button>
+
+          <Typography mt={2}>Forgot Password?</Typography>
+        </Box>
+      </Box>
+    </>
   );
 }
