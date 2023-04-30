@@ -3,38 +3,26 @@ import React, { useState } from "react";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import logo from "./../../Components/assest/logo.png";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 export default function Register() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  // console.log(userName)
-  //   const handleSubmit = async () => {
-  //     console.log("get hit here");
-  //     let loginData = {
-  //       userName,
-  //       password,
-  //     };
 
-  //     let userData = await axios.post(
-  //       "https://vampire.up.railway.app/admin/login",
-  //       loginData
-  //     );
-  //     console.log(userData.data.data);
-
-  //     if (userData) {
-  //       console.log("hit here only");
-  //       localStorage.setItem("serviceToken", userData.data.data.token);
-  //       localStorage.setItem("role", userData.data.data.role);
-  //       localStorage.setItem("userName", userData.data.data.phoneNumber);
-  //       localStorage.setItem("name", userData.data.data.name);
-  //       localStorage.setItem("isLoggedIn", "true");
-  //     }
-
-  //     navigate("/");
-  //   };
   return (
-    <>
+    <Box
+      sx={{
+        position: "relative",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+        backgroundImage:
+          "url('https://www.shutterstock.com/image-vector/abstract-watercolor-design-wash-aqua-260nw-2254158479.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center center",
+      }}
+    >
       <Box
         sx={{
           maxWidth: 500,
@@ -46,12 +34,16 @@ export default function Register() {
           textAlign: "center",
           justifyContent: "center",
           alignItems: "center",
+          transition: "transform 0.3s ease-in-out",
+          "&:hover": {
+            transform: "scale(1.02)",
+          },
         }}
       >
-        <img src={logo} alt="logo" />
+        <img src={logo} alt="logo" style={{ marginTop: "-20px" }} />
         <Box display={"flex"} mb={3} gap={1}>
           <PersonOutlineIcon style={{ fontSize: 30, color: "yellowgreen" }} />
-          <Typography fontSize={18}>Sign In</Typography>
+          <Typography fontSize={18}>Register</Typography>
         </Box>
 
         <Box
@@ -83,6 +75,7 @@ export default function Register() {
             sx={{
               backgroundColor: "yellowgreen",
               borderRadius: "4px",
+              border: "1px solid yellowgreen",
               color: "white",
               mt: 4,
               p: 1.2,
@@ -106,9 +99,13 @@ export default function Register() {
             Register
           </Button>
         </Box>
-
-        <Typography mt={2}>Forgot Password?</Typography>
+        <br />
+        <Link style={{ textDecoration: "none" }} to={"/forgot-password"}>
+          <Typography sx={{ fontSize: "16px", fontWeight: 600 }}>
+            Forgot Password?
+          </Typography>{" "}
+        </Link>
       </Box>
-    </>
+    </Box>
   );
 }

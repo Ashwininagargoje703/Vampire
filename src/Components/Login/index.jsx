@@ -36,7 +36,19 @@ export default function Login() {
     navigate("/");
   };
   return (
-    <>
+    <Box
+      sx={{
+        position: "relative",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+        backgroundImage:
+          "url('https://www.shutterstock.com/image-vector/abstract-watercolor-design-wash-aqua-260nw-2254158479.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center center",
+      }}
+    >
       <Box
         sx={{
           maxWidth: 500,
@@ -48,6 +60,10 @@ export default function Login() {
           textAlign: "center",
           justifyContent: "center",
           alignItems: "center",
+          transition: "transform 0.3s ease-in-out",
+          "&:hover": {
+            transform: "scale(1.02)",
+          },
         }}
       >
         <img src={logo} alt="logo" />
@@ -77,6 +93,7 @@ export default function Login() {
             onClick={handleSubmit}
             sx={{
               backgroundColor: "yellowgreen",
+              border: "0.1px solid yellowgreen",
               borderRadius: "4px",
               color: "white",
               mt: 4,
@@ -86,24 +103,39 @@ export default function Login() {
               fontWeight: 600,
 
               "&:hover": {
-                mt: 4,
-                p: 1.2,
-                pr: 8,
-                fontWeight: 600,
-                pl: 8,
                 backgroundColor: "white",
-                border: "1px solid yellowgreen",
+                border: "0.1px solid yellowgreen",
                 color: "yellowgreen",
-                borderRadius: "4px",
               },
             }}
           >
             Login
           </Button>
         </Box>
-
-        <Link mt={2} onClick={navigate('/forgot-password')}>Forgot Password?</Link>
+        <Box display={"grid"} mt={2}>
+          <Link
+            to={"/register"}
+            style={{
+              textDecoration: "none",
+            }}
+          >
+            <Typography sx={{ fontSize: "16px", fontWeight: 600 }}>
+              {" "}
+              Don't have an account? Register
+            </Typography>
+          </Link>
+          <br />
+          <Link
+            mt={2}
+            style={{ textDecoration: "none" }}
+            to={"/forgot-password"}
+          >
+            <Typography sx={{ fontSize: "16px", fontWeight: 600 }}>
+              Forgot Password?
+            </Typography>{" "}
+          </Link>
+        </Box>
       </Box>
-    </>
+    </Box>
   );
 }

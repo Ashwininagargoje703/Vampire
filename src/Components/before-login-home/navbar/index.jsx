@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 import { Avatar, Box, Typography } from "@mui/material";
 import logo from "../../../Components/assest/logo.png";
 import ProfileMenu from "./profile-dropdown";
+import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 export default function NavbarApp() {
   const isLoggedIn = localStorage.getItem("isLoggedIn");
   return (
     <Box
       sx={{
         borderBottom: "1px solid #e4e2e0",
-        height: "50px",
+        height: "70px",
         display: "flex",
         justifyContent: "space-between",
         backgroundColor: "yellowgreen",
@@ -26,7 +27,7 @@ export default function NavbarApp() {
         <img
           style={{
             width: "200px",
-            height: "100px",
+            height: "120px",
             marginTop: "-25px",
           }}
           src={logo}
@@ -35,40 +36,61 @@ export default function NavbarApp() {
 
         <Box
           sx={{
-            mt: 1,
+            mt: 2.5,
             "&:hover": {
-              borderBottom: "0.125rem solid transparent",
+              borderBottom: "0.255rem solid transparent",
               borderBottomColor: "#2557a7",
             },
           }}
         >
-          <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+          <Link
+            to="/"
+            style={{
+              textDecoration: "none",
+              color: "white",
+              fontWeight: "600",
+            }}
+          >
             Find jobs{" "}
           </Link>{" "}
         </Box>
         <Box
           sx={{
-            mt: 1,
+            mt: 2.5,
             "&:hover": {
-              borderBottom: "0.125rem solid transparent",
+              borderBottom: "0.255rem solid transparent",
               borderBottomColor: "#2557a7",
             },
           }}
         >
-          <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+          <Link
+            to="/"
+            style={{
+              textDecoration: "none",
+              color: "white",
+              fontWeight: "600",
+            }}
+          >
             Company reviews{" "}
           </Link>{" "}
         </Box>
         <Box
           sx={{
-            mt: 1,
+            mt: 2.5,
             "&:hover": {
-              borderBottom: "0.125rem solid transparent",
+              borderBottom: "0.255rem solid transparent",
               borderBottomColor: "#2557a7",
             },
           }}
         >
-          <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+          <Link
+            to="/"
+            style={{
+              textDecoration: "none",
+              color: "white",
+              fontWeight: "600",
+            }}
+          >
             Find salaries{" "}
           </Link>{" "}
         </Box>
@@ -85,38 +107,52 @@ export default function NavbarApp() {
       >
         <Box
           sx={{
-            mt: 1,
+            mt: 2.5,
             "&:hover": {
-              borderBottom: "0.125rem solid transparent",
+              borderBottom: "0.255rem solid transparent",
               borderBottomColor: "#2557a7",
             },
           }}
         >
-          <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+          <Link
+            to="/"
+            style={{
+              textDecoration: "none",
+              color: "white",
+              fontWeight: "600",
+            }}
+          >
             Post your resume
           </Link>
         </Box>
 
         <Box
           sx={{
-            mt: 1,
+            mt: 2.5,
             "&:hover": {
-              borderBottom: "0.125rem solid transparent",
+              borderBottom: "0.255rem solid transparent",
               borderBottomColor: "#2557a7",
             },
           }}
         >
-          <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
-            Employers/Post job{" "}
+          <Link
+            to="/"
+            style={{
+              textDecoration: "none",
+              color: "white",
+              fontWeight: "600",
+            }}
+          >
+            Post job{" "}
           </Link>
         </Box>
 
         {isLoggedIn ? (
           <Box
             sx={{
-              mt: 1,
+              mt: 2.5,
               "&:hover": {
-                borderBottom: "0.125rem solid transparent",
+                borderBottom: "0.255rem solid transparent",
                 borderBottomColor: "#2557a7",
               },
             }}
@@ -129,14 +165,21 @@ export default function NavbarApp() {
               fontSize: "1rem!important",
               color: "#2557a7",
               fontWeight: "700",
-              mt: 1,
+              mt: 2.5,
             }}
           >
             <Link
               to="/login"
-              style={{ textDecoration: "none", color: "inherit" }}
+              style={{
+                textDecoration: "none",
+                color: "white",
+                display: "flex",
+              }}
             >
-              Sign In
+              <PermIdentityIcon />{" "}
+              <Typography mt={0.1} fontWeight={600}>
+                LogIn
+              </Typography>
             </Link>
           </Box>
         )}
