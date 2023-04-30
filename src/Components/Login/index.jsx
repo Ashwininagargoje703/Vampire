@@ -3,7 +3,26 @@ import React, { useState } from "react";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import logo from "./../../Components/assest/logo.png";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+
 export default function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault(); // prevent form submission
+    // handle form submission here (e.g. send data to backend)
+    console.log("Username:", username);
+    console.log("Password:", password);
+  };
+
   return (
     <>
       <Box
@@ -25,18 +44,25 @@ export default function Login() {
           <Typography fontSize={18}>Sign In</Typography>
         </Box>
 
-        <Box display={"grid"} gap={3}>
+        <Box component="form" onSubmit={handleSubmit} display={"grid"} gap={3}>
           <TextField
             id="outlined-multiline-flexible"
             label="User Name"
             multiline
             maxRows={4}
+            value={username}
+            onChange={handleUsernameChange}
           />
-          <TextField id="outlined-textarea" label="Password" multiline />
-        </Box>
-
-        <Box>
+          <TextField
+            id="outlined-textarea"
+            label="Password"
+            multiline
+            type="password"
+            value={password}
+            onChange={handlePasswordChange}
+          />
           <Button
+            type="submit"
             sx={{
               backgroundColor: "yellowgreen",
               borderRadius: "4px",
@@ -62,9 +88,9 @@ export default function Login() {
           >
             Login
           </Button>
-
-          <Typography mt={2}>Forgot Password?</Typography>
         </Box>
+
+        <Typography mt={2}>Forgot Password?</Typography>
       </Box>
     </>
   );

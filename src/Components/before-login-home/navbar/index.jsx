@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Box, Typography } from "@mui/material";
+import { Avatar, Box, Typography } from "@mui/material";
 import logo from "../../../Components/assest/logo.png";
 export default function NavbarApp() {
   return (
@@ -121,6 +121,24 @@ export default function NavbarApp() {
         >
           <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
             Employers/Post job{" "}
+          </Link>
+        </Box>
+
+        <Box
+          sx={{
+            mt: 1,
+            "&:hover": {
+              borderBottom: "0.125rem solid transparent",
+              borderBottomColor: "#2557a7",
+            },
+          }}
+        >
+          <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+            <Avatar
+              alt="p"
+              src="/static/images/avatar/1.jpg"
+              sx={{ width: 24, height: 24 }}
+            />
           </Link>
         </Box>
       </Box>
