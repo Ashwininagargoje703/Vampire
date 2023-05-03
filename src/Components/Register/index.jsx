@@ -14,7 +14,7 @@ export default function Register() {
       sx={{
         position: "relative",
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "right",
         alignItems: "center",
         height: "100vh",
         backgroundImage:
@@ -30,14 +30,11 @@ export default function Register() {
           boxShadow: "1.05975px 4.23898px 7.97545px 4.43081px rgb(0 0 0 / 10%)",
           border: "1.05975px solid rgba(9, 54, 121, 0.1)",
           p: 4,
+          mr: 13,
           width: "100%",
           textAlign: "center",
           justifyContent: "center",
           alignItems: "center",
-          transition: "transform 0.3s ease-in-out",
-          "&:hover": {
-            transform: "scale(1.02)",
-          },
         }}
       >
         <img src={logo} alt="logo" style={{ marginTop: "-20px" }} />

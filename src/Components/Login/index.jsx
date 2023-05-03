@@ -6,6 +6,7 @@ import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import axios from "axios";
 // import { useNavigate } from "react-router";
 import { Link, useNavigate } from "react-router-dom";
+import SwipeableTextMobileStepper from "../slider";
 export default function Login() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -40,7 +41,7 @@ export default function Login() {
       sx={{
         position: "relative",
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "space-between",
         alignItems: "center",
         height: "100vh",
         backgroundImage:
@@ -49,6 +50,9 @@ export default function Login() {
         backgroundPosition: "center center",
       }}
     >
+      <Box>
+        <SwipeableTextMobileStepper />
+      </Box>
       <Box
         sx={{
           maxWidth: 500,
@@ -56,14 +60,15 @@ export default function Login() {
           boxShadow: "1.05975px 4.23898px 7.97545px 4.43081px rgb(0 0 0 / 10%)",
           border: "1.05975px solid rgba(9, 54, 121, 0.1)",
           p: 4,
+          mr: 13,
           width: "100%",
           textAlign: "center",
           justifyContent: "center",
           alignItems: "center",
-          transition: "transform 0.3s ease-in-out",
-          "&:hover": {
-            transform: "scale(1.02)",
-          },
+          // transition: "transform 0.3s ease-in-out",
+          // "&:hover": {
+          //   transform: "scale(1.02)",
+          // },
         }}
       >
         <img src={logo} alt="logo" />
@@ -75,6 +80,11 @@ export default function Login() {
         <Box component="form" onSubmit={handleSubmit} display={"grid"} gap={3}>
           <TextField
             id="outlined-multiline-flexible"
+            sx={{
+              "&.Mui-focused .MuiInputLabel-root": {
+                color: "green",
+              },
+            }}
             label="User Name"
             multiline
             maxRows={4}

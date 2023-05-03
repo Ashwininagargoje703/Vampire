@@ -10,7 +10,7 @@ export default function NavbarApp() {
     <Box
       sx={{
         borderBottom: "1px solid #e4e2e0",
-        height: "70px",
+        height: "90px",
         display: "flex",
         justifyContent: "space-between",
         backgroundColor: "yellowgreen",
@@ -28,7 +28,7 @@ export default function NavbarApp() {
           style={{
             width: "200px",
             height: "120px",
-            marginTop: "-25px",
+            marginTop: "-15px",
           }}
           src={logo}
           alt="logo"
@@ -36,7 +36,7 @@ export default function NavbarApp() {
 
         <Box
           sx={{
-            mt: 2.5,
+            mt: 4,
             "&:hover": {
               borderBottom: "0.255rem solid transparent",
               borderBottomColor: "#2557a7",
@@ -44,11 +44,12 @@ export default function NavbarApp() {
           }}
         >
           <Link
-            to="/"
+            to="/jobsearch"
             style={{
               textDecoration: "none",
               color: "white",
               fontWeight: "600",
+              fontSize: 20,
             }}
           >
             Find jobs{" "}
@@ -56,7 +57,7 @@ export default function NavbarApp() {
         </Box>
         <Box
           sx={{
-            mt: 2.5,
+            mt: 4,
             "&:hover": {
               borderBottom: "0.255rem solid transparent",
               borderBottomColor: "#2557a7",
@@ -69,6 +70,7 @@ export default function NavbarApp() {
               textDecoration: "none",
               color: "white",
               fontWeight: "600",
+              fontSize: 20,
             }}
           >
             Company reviews{" "}
@@ -76,7 +78,7 @@ export default function NavbarApp() {
         </Box>
         <Box
           sx={{
-            mt: 2.5,
+            mt: 4,
             "&:hover": {
               borderBottom: "0.255rem solid transparent",
               borderBottomColor: "#2557a7",
@@ -89,6 +91,7 @@ export default function NavbarApp() {
               textDecoration: "none",
               color: "white",
               fontWeight: "600",
+              fontSize: 20,
             }}
           >
             Find salaries{" "}
@@ -107,7 +110,7 @@ export default function NavbarApp() {
       >
         <Box
           sx={{
-            mt: 2.5,
+            mt: 4,
             "&:hover": {
               borderBottom: "0.255rem solid transparent",
               borderBottomColor: "#2557a7",
@@ -120,6 +123,7 @@ export default function NavbarApp() {
               textDecoration: "none",
               color: "white",
               fontWeight: "600",
+              fontSize: 20,
             }}
           >
             Post your resume
@@ -128,7 +132,7 @@ export default function NavbarApp() {
 
         <Box
           sx={{
-            mt: 2.5,
+            mt: 4,
             "&:hover": {
               borderBottom: "0.255rem solid transparent",
               borderBottomColor: "#2557a7",
@@ -136,11 +140,12 @@ export default function NavbarApp() {
           }}
         >
           <Link
-            to="/"
+            to="/joblisting"
             style={{
               textDecoration: "none",
               color: "white",
               fontWeight: "600",
+              fontSize: 20,
             }}
           >
             Post job{" "}
@@ -150,7 +155,7 @@ export default function NavbarApp() {
         {isLoggedIn ? (
           <Box
             sx={{
-              mt: 2.5,
+              mt: 4,
               "&:hover": {
                 borderBottom: "0.255rem solid transparent",
                 borderBottomColor: "#2557a7",
@@ -165,7 +170,7 @@ export default function NavbarApp() {
               fontSize: "1rem!important",
               color: "#2557a7",
               fontWeight: "700",
-              mt: 2.5,
+              mt: 4,
             }}
           >
             <Link
@@ -177,7 +182,7 @@ export default function NavbarApp() {
               }}
             >
               <PermIdentityIcon />{" "}
-              <Typography mt={0.1} fontWeight={600}>
+              <Typography fontWeight={600} fontSize={20}>
                 LogIn
               </Typography>
             </Link>

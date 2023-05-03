@@ -53,7 +53,7 @@ export default function ForgotPassword() {
       sx={{
         position: "relative",
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "right",
         alignItems: "center",
         height: "100vh",
         backgroundImage:
@@ -70,13 +70,14 @@ export default function ForgotPassword() {
           border: "1.05975px solid rgba(9, 54, 121, 0.1)",
           p: 4,
           width: "100%",
+          mr: 13,
           textAlign: "center",
           justifyContent: "center",
           alignItems: "center",
-          transition: "transform 0.3s ease-in-out",
-          "&:hover": {
-            transform: "scale(1.02)",
-          },
+          //   transition: "transform 0.3s ease-in-out",
+          //   "&:hover": {
+          //     transform: "scale(1.02)",
+          //   },
         }}
       >
         <img src={logo} alt="logo" />
