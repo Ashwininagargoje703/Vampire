@@ -6,6 +6,7 @@ import ThirdCardPage from "./third_card";
 import FourCardPage from "./four_card";
 import SixCardPage from "./six_card";
 import NavbarApp from "../before-login-home/navbar";
+import Footer from "../Footer";
 
 function HomePage() {
   return (
@@ -24,6 +25,7 @@ function HomePage() {
         <FourCardPage />
         <SixCardPage />
       </Box>
+      <Footer />
     </Box>
   );
 }

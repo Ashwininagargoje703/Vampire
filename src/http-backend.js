@@ -1,4 +1,4 @@
-export const backend_url = "https://cheeku-0407shona143.up.railway.app";
+export const backend_url = "http://localhost:4000";
 
 // https://vampire.up.railway.app/admin/register
 

@@ -4,7 +4,8 @@ import { GoogleLogin, GoogleLogout } from "react-google-login";
 import logo from "./../../Components/assest/logo.png";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { Link, useNavigate } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
+import SwipeableTextMobileStepper from "../slider";
 export default function Register() {
   const [name, setName] = useState("");
   const [userName, setUserName] = useState("");
@@ -14,32 +15,34 @@ export default function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-      console.log(userName);
-      let createObj = {
-        name,
-        userName,
-        password,
-        userType:1
-      }
-      axios.post('http://localhost:4000/admin/register',createObj)
-      .then((res)=>{
-        console.log(res.data)
-        if(res.data.data.token){
-          axios.post("http://localhost:4000/admin/login",{userName,password}).then((item)=>{
-            if(item.data.data.token){
-              console.log("hit here only");
-              localStorage.setItem("serviceToken", item.data.data.token);
-              localStorage.setItem("role", item.data.data.role);
-              localStorage.setItem("userName", item.data.data.phoneNumber);
-              localStorage.setItem("name", item.data.data.name);
-              localStorage.setItem("isLoggedIn", "true")
-              navigate('/')
-            }
-
-          })
+    console.log(userName);
+    let createObj = {
+      name,
+      userName,
+      password,
+      userType: 1,
+    };
+    axios
+      .post("http://localhost:4000/admin/register", createObj)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.data.token) {
+          axios
+            .post("http://localhost:4000/admin/login", { userName, password })
+            .then((item) => {
+              if (item.data.data.token) {
+                console.log("hit here only");
+                localStorage.setItem("serviceToken", item.data.data.token);
+                localStorage.setItem("role", item.data.data.role);
+                localStorage.setItem("userName", item.data.data.phoneNumber);
+                localStorage.setItem("name", item.data.data.name);
+                localStorage.setItem("isLoggedIn", "true");
+                navigate("/");
+              }
+            });
         }
       })
-      .catch((err)=>console.log(err))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -47,15 +50,17 @@ export default function Register() {
       sx={{
         position: "relative",
         display: "flex",
-        justifyContent: "right",
+        justifyContent: "space-between",
         alignItems: "center",
         height: "100vh",
-        backgroundImage:
-          "url('https://www.shutterstock.com/image-vector/abstract-watercolor-design-wash-aqua-260nw-2254158479.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center center",
+        width: "100%",
+        background:
+          "linear-gradient(rgba(154, 205, 50, 0.7), rgba(154, 205, 50, 0.7))",
       }}
     >
+      <Box>
+        <SwipeableTextMobileStepper />
+      </Box>
       <Box
         sx={{
           maxWidth: 500,
@@ -109,7 +114,11 @@ export default function Register() {
           <Box>
             <Button
               type="submit"
-              disabled={(!password.length || !confirmPassword.length) || (password != confirmPassword)}
+              disabled={
+                !password.length ||
+                !confirmPassword.length ||
+                password != confirmPassword
+              }
               sx={{
                 backgroundColor: "yellowgreen",
                 borderRadius: "4px",

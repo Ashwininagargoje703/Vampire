@@ -1,12 +1,9 @@
 import * as React from "react";
-import { useTheme } from "@mui/material/styles";
+import { styled, useTheme, withStyles } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MobileStepper from "@mui/material/MobileStepper";
-import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 
@@ -34,35 +31,44 @@ const images = [
       "Powerful way to carry out the process of recruitment. Allowing smooth handling of everything from applicant tracking to on-boarding.",
   },
 ];
+const CustomDot = styled("span")({
+  backgroundColor: "red", // Change the dot color here
+  width: 12, // Change the dot size here
+  height: 12,
+  borderRadius: "50%",
+  display: "inline-block",
+});
 
 function SwipeableTextMobileStepper() {
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = images.length;
 
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
   const handleStepChange = (step) => {
     setActiveStep(step);
   };
 
   return (
-    <Box sx={{ maxWidth: 600, flexGrow: 1, pl: 4, mt: -34 }}>
+    <Box
+      sx={{
+        maxWidth: 600,
+        flexGrow: 1,
+        pl: 4,
+        mt: -34,
+      }}
+    >
       <AutoPlaySwipeableViews
-        bgcolor="transparent"
+        style={{
+          transition: "500ms", // Adjust the transition speed here
+        }}
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={activeStep}
         onChangeIndex={handleStepChange}
         enableMouseEvents
+        interval={2000} // Adjust the interval speed (in milliseconds) here
       >
         {images.map((step, index) => (
-          <div style={{ bgcolor: "transparent" }}>
+          <div key={index} style={{ bgcolor: "transparent" }}>
             {Math.abs(activeStep - index) <= 2 ? (
               <Box p={2}>
                 <Typography sx={{ fontSize: 32 }}>{step.label}</Typography>
@@ -72,19 +78,6 @@ function SwipeableTextMobileStepper() {
           </div>
         ))}
       </AutoPlaySwipeableViews>
-      <MobileStepper
-        style={{
-          backgroundColor: "transparent",
-          pl: 5,
-          fontSize: 20,
-        }}
-        DotProps={{
-          style: { width: 12, height: 12 },
-        }}
-        steps={maxSteps}
-        position="static"
-        activeStep={activeStep}
-      />
     </Box>
   );
 }

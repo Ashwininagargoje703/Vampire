@@ -44,10 +44,9 @@ export default function Login() {
         justifyContent: "space-between",
         alignItems: "center",
         height: "100vh",
-        backgroundImage:
-          "url('https://www.shutterstock.com/image-vector/abstract-watercolor-design-wash-aqua-260nw-2254158479.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center center",
+        width: "100%",
+        background:
+          "linear-gradient(rgba(154, 205, 50, 0.7), rgba(154, 205, 50, 0.7))",
       }}
     >
       <Box>

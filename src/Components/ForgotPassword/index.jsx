@@ -5,6 +5,7 @@ import logo from "./../../Components/assest/logo.png";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import SwipeableTextMobileStepper from "../slider";
 export default function ForgotPassword() {
   const navigate = useNavigate();
   const [userName, setUserName] = useState("");
@@ -53,15 +54,17 @@ export default function ForgotPassword() {
       sx={{
         position: "relative",
         display: "flex",
-        justifyContent: "right",
+        justifyContent: "space-between",
         alignItems: "center",
         height: "100vh",
-        backgroundImage:
-          "url('https://www.shutterstock.com/image-vector/abstract-watercolor-design-wash-aqua-260nw-2254158479.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center center",
+        width: "100%",
+        background:
+          "linear-gradient(rgba(154, 205, 50, 0.7), rgba(154, 205, 50, 0.7))",
       }}
     >
+      <Box>
+        <SwipeableTextMobileStepper />
+      </Box>
       <Box
         sx={{
           maxWidth: 500,
@@ -74,10 +77,6 @@ export default function ForgotPassword() {
           textAlign: "center",
           justifyContent: "center",
           alignItems: "center",
-          //   transition: "transform 0.3s ease-in-out",
-          //   "&:hover": {
-          //     transform: "scale(1.02)",
-          //   },
         }}
       >
         <img src={logo} alt="logo" />
