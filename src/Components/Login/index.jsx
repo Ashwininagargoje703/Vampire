@@ -19,10 +19,7 @@ export default function Login() {
       password,
     };
 
-    let userData = await axios.post(
-      "https://vampire.up.railway.app/admin/login",
-      loginData
-    );
+    let userData = await axios.post("`${backend_url}/admin/login", loginData);
     console.log(userData.data.data);
 
     if (userData) {
@@ -64,13 +61,16 @@ export default function Login() {
           textAlign: "center",
           justifyContent: "center",
           alignItems: "center",
-          // transition: "transform 0.3s ease-in-out",
-          // "&:hover": {
-          //   transform: "scale(1.02)",
-          // },
         }}
       >
-        <img src={logo} alt="logo" />
+        <img
+          src={logo}
+          alt="logo"
+          style={{
+            marginTop: "-30px",
+            maxHeight: "200px",
+          }}
+        />
         <Box display={"flex"} mb={3} gap={1}>
           <PersonOutlineIcon style={{ fontSize: 30, color: "yellowgreen" }} />
           <Typography fontSize={18}>Sign In</Typography>

@@ -2,13 +2,14 @@ import { Box, Button, Card, Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { getRequest } from "../../../services/request";
+import { backend_url } from "../../../http-backend";
 
 function FourCardPage() {
   const [data, setData] = useState([]);
 
   function fetchData() {
     getRequest({
-      url: `https://vampire.up.railway.app/post/getAllPublicPost`,
+      url: `${backend_url}/post/getAllPublicPost`,
     })
       .then((res) => {
         setData(res?.data?.data);

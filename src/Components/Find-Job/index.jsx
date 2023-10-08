@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import JobPostCard from "./job-post-card";
-import JobPostMoreInfoCard from "./Job-more-info";
 
 const FindJob = ({ searchResults, setSearchResults }) => {
   console.log("searchResults", searchResults);
@@ -26,11 +25,11 @@ const FindJob = ({ searchResults, setSearchResults }) => {
           />
         </div>
       </div>
-      <div style={{ flex: 1 }}>
+      {/* <div style={{ flex: 1 }}>
         <div style={{ padding: "1rem" }}>
           <JobPostMoreInfoCard />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

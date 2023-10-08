@@ -16,7 +16,7 @@ function HomePage() {
       }}
     >
       <Box>
-        <Box sx={{ position: "fixed", top: 0, zIndex: 99999, width: "100%" }}>
+        <Box sx={{ position: "fixed", top: 0, width: "100%" }}>
           <NavbarApp />
         </Box>
         <FirstCardPage />

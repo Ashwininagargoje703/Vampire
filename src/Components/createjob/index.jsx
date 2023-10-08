@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { TextField, Button, Typography, Box } from "@mui/material";
+import { backend_url } from "../../http-backend";
 
 const Createjob = () => {
   const [title, setTitle] = useState("");
@@ -12,7 +13,6 @@ const Createjob = () => {
   const [tags, setTags] = useState("");
   const [salaryStart, setSalaryStart] = useState("");
   const [salaryEnd, setSalaryEnd] = useState("");
-  const [salaryType, setSalaryType] = useState("");
   const [shift, setShift] = useState("");
   const [requirements, setRequirements] = useState("");
 
@@ -28,27 +28,43 @@ const Createjob = () => {
       tags,
       salaryStart,
       salaryEnd,
-      salaryType,
       shift,
       requirements,
     };
-    await axios.post(
-      "https://vampire.up.railway.app/post/createPostWithTitle",
-      post
-    );
-    // Reset form
-    setTitle("");
-    setLocation("");
-    setDescription("");
-    setRelatedTo("");
-    setImageUrl("");
-    setResponsibilities("");
-    setTags("");
-    setSalaryStart("");
-    setSalaryEnd("");
-    setSalaryType("");
-    setShift("");
-    setRequirements("");
+
+    // console.log("jaa raha kya data", post);
+    try {
+      const response = await fetch(`${backend_url}/post/createPostWithTitle`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(post),
+      });
+
+      if (response.ok) {
+        // Reset form
+        setTitle("");
+        setLocation("");
+        setDescription("");
+        setRelatedTo("");
+        setImageUrl("");
+        setResponsibilities("");
+        setTags("");
+        setSalaryStart("");
+        setSalaryEnd("");
+        setShift("");
+        setRequirements("");
+      } else {
+        console.error(
+          "Failed to post data:",
+          response.status,
+          response.statusText
+        );
+      }
+    } catch (error) {
+      console.error("Error posting data:", error);
+    }
   };
 
   return (
@@ -141,14 +157,7 @@ const Createjob = () => {
           margin="normal"
           fullWidth
         />
-        <TextField
-          label="Salary Type"
-          variant="outlined"
-          value={salaryEnd}
-          onChange={(e) => setSalaryType(e.target.value)}
-          margin="normal"
-          fullWidth
-        />{" "}
+
         <TextField
           label="shift"
           variant="outlined"
@@ -166,6 +175,7 @@ const Createjob = () => {
           fullWidth
         />
         <Button
+          onSubmit={handleSubmit}
           sx={{
             backgroundColor: "yellowgreen",
             borderRadius: "4px",

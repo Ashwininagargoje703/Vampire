@@ -4,6 +4,7 @@ import { Avatar, Box, Typography } from "@mui/material";
 import logo from "../../../Components/assest/logo.png";
 import ProfileMenu from "./profile-dropdown";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
+
 export default function NavbarApp() {
   const isLoggedIn = localStorage.getItem("isLoggedIn");
   return (
@@ -182,7 +183,7 @@ export default function NavbarApp() {
               }}
             >
               <PermIdentityIcon />{" "}
-              <Typography fontWeight={600} fontSize={20}>
+              <Typography fontWeight={600} fontSize={19}>
                 LogIn
               </Typography>
             </Link>

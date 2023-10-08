@@ -11,14 +11,16 @@ import {
 import { BsFillBagPlusFill } from "react-icons/bs";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { getRequest } from "../../../services/request";
+import { backend_url } from "../../../http-backend";
 
 const JobPostMoreInfoCard = () => {
   const [data, setData] = useState([]);
   let id = localStorage.getItem("jobId");
+
   useEffect(() => {
     function fetchData() {
       getRequest({
-        url: `https://vampire.up.railway.app/post/getPostDetails/${id}`,
+        url: `${backend_url}/post/getPostDetails/${id}`,
       })
         .then((res) => {
           setData(res?.data?.data);
@@ -72,7 +74,7 @@ const JobPostMoreInfoCard = () => {
               </IconButton>
             </Box>
           </Box>
-          <Divider color={"black"} />
+          <Divider />
 
           <Box
             p={2}

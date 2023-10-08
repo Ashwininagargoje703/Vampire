@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Box, Button, Card, Typography } from "@mui/material";
 import { BsFillBagPlusFill } from "react-icons/bs";
 import { getRequest } from "../../../services/request";
+import { backend_url } from "../../../http-backend";
+import JobDetailsDialogs from "../Job-more-info/JobInfo";
 
 const JobPostCard = ({ searchResults, setSearchResults }) => {
   const [data, setData] = useState([]);
 
   function fetchData() {
     getRequest({
-      url: `https://vampire.up.railway.app/post/getAllPublicPost`,
+      url: `${backend_url}/post/getAllPublicPost`,
     })
       .then((res) => {
         setData(res?.data?.data);
@@ -45,11 +47,10 @@ const JobPostCard = ({ searchResults, setSearchResults }) => {
         },
       }}
     >
-      {searchResults?.map((data, idx) => (
+      {data?.map((data, idx) => (
         <Card
           sx={{ p: 2, mb: 2, border: "1px solid #d4d2d0" }}
           key={searchResults?._id}
-          onClick={() => handleJobClick(data?._id)}
         >
           <Typography fontSize={18} fontWeight={600}>
             {data?.title}
@@ -71,6 +72,10 @@ const JobPostCard = ({ searchResults, setSearchResults }) => {
           )}
           <Button variant="outlined" color="primary">
             Save Job
+          </Button>
+
+          <Button onClick={() => handleJobClick(data?._id)}>
+            <JobDetailsDialogs Title={data?.title} />
           </Button>
         </Card>
       ))}

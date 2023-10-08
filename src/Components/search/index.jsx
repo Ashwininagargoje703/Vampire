@@ -6,12 +6,15 @@ import SearchIcon from "@mui/icons-material/Search";
 import Button from "@mui/material/Button";
 import { getRequest } from "../../services/request";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+
 import FindJob from "../Find-Job";
+import { backend_url } from "../../http-backend";
+
 const JobSearch = () => {
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [showResults, setShowResults] = useState(false);
+
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
   };
@@ -22,11 +25,11 @@ const JobSearch = () => {
 
   const handleSearch = () => {
     getRequest({
-      url: `https://vampire.up.railway.app/post/searchJobs/?title=${title}&location=${location}`,
+      url: `${backend_url}/post/searchJobs/?title=${title}&location=${location}`,
     })
       .then((res) => {
         setSearchResults(res?.data?.data);
-        console.log("hello res", res.data);
+        console.log("search data", res?.data?.data);
       })
       .catch((e) => {
         setSearchResults([]);

@@ -75,7 +75,11 @@ export default function Register() {
           alignItems: "center",
         }}
       >
-        <img src={logo} alt="logo" style={{ marginTop: "-20px" }} />
+        <img
+          src={logo}
+          alt="logo"
+          style={{ marginTop: "-30px", maxHeight: "200px" }}
+        />
         <Box display={"flex"} mb={3} gap={1}>
           <PersonOutlineIcon style={{ fontSize: 30, color: "yellowgreen" }} />
           <Typography fontSize={18}>Register</Typography>
