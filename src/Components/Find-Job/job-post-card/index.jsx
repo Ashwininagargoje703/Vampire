@@ -37,11 +37,10 @@ const JobPostCard = ({ searchResults, setSearchResults }) => {
   };
 
   useEffect(() => {
-    const userId = "643af11e006b181021e17c26";
     searchResults?.forEach((data) => {
       checkSavedJob(userId, data._id);
     });
-  }, [searchResults]);
+  }, [userId]);
 
   const handleJobClick = (jobId) => {
     // Store jobId in localStorage
