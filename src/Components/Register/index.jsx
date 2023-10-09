@@ -1,17 +1,19 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { GoogleLogin, GoogleLogout } from "react-google-login";
 import logo from "./../../Components/assest/logo.png";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import SwipeableTextMobileStepper from "../slider";
+import { backend_url } from "../../http-backend";
+import { useCookies } from "react-cookie";
 export default function Register() {
   const [name, setName] = useState("");
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
+  const [cookies, setCookie] = useCookies(["user"]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,20 +25,21 @@ export default function Register() {
       userType: 1,
     };
     axios
-      .post("http://localhost:4000/admin/register", createObj)
+      .post(`${backend_url}/admin/register`, createObj)
       .then((res) => {
         console.log(res.data);
         if (res.data.data.token) {
           axios
-            .post("http://localhost:4000/admin/login", { userName, password })
+            .post(`${backend_url}/admin/login`, { userName, password })
             .then((item) => {
               if (item.data.data.token) {
                 console.log("hit here only");
-                localStorage.setItem("serviceToken", item.data.data.token);
-                localStorage.setItem("role", item.data.data.role);
-                localStorage.setItem("userName", item.data.data.phoneNumber);
-                localStorage.setItem("name", item.data.data.name);
-                localStorage.setItem("isLoggedIn", "true");
+                setCookie("serviceToken", item.data.data.token);
+                setCookie("userId", item.data.userId);
+                setCookie("role", item.data.data.role);
+                setCookie("userName", item.data.data.phoneNumber);
+                setCookie("name", item.data.data.name);
+                setCookie("isLoggedIn", "true");
                 navigate("/");
               }
             });

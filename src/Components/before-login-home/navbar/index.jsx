@@ -4,9 +4,12 @@ import { Avatar, Box, Typography } from "@mui/material";
 import logo from "../../../Components/assest/logo.png";
 import ProfileMenu from "./profile-dropdown";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
+import { Cookies } from "react-cookie";
 
 export default function NavbarApp() {
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  const cookie = new Cookies();
+  const isLoggedIn = cookie.get("isLoggedIn");
+
   return (
     <Box
       sx={{

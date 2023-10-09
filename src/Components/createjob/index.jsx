@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { TextField, Button, Typography, Box } from "@mui/material";
-import { backend_url } from "../../http-backend";
+import { doRequest } from "../../services/request";
 
 const Createjob = () => {
   const [title, setTitle] = useState("");
@@ -31,19 +30,14 @@ const Createjob = () => {
       shift,
       requirements,
     };
-
-    // console.log("jaa raha kya data", post);
-    try {
-      const response = await fetch(`${backend_url}/post/createPostWithTitle`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(post),
-      });
-
-      if (response.ok) {
-        // Reset form
+    let payload = JSON.stringify(post);
+    doRequest({
+      url: "/post/createPostWithTitle",
+      body: payload,
+      method: "POST",
+    })
+      .then((response) => {
+        console.log("knowledge", post);
         setTitle("");
         setLocation("");
         setDescription("");
@@ -55,16 +49,44 @@ const Createjob = () => {
         setSalaryEnd("");
         setShift("");
         setRequirements("");
-      } else {
-        console.error(
-          "Failed to post data:",
-          response.status,
-          response.statusText
-        );
-      }
-    } catch (error) {
-      console.error("Error posting data:", error);
-    }
+      })
+      .catch((error) => {
+        console.error("Error updating knowledge:", error);
+      });
+
+    // try {
+    //   const response = await fetch(`${backend_url}/post/createPostWithTitle`, {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(post),
+    //   });
+
+    //   if (response.ok) {
+    //     // Reset form
+    //     setTitle("");
+    //     setLocation("");
+    //     setDescription("");
+    //     setRelatedTo("");
+    //     setImageUrl("");
+    //     setResponsibilities("");
+    //     setTags("");
+    //     setSalaryStart("");
+    //     setSalaryEnd("");
+    //     setShift("");
+    //     setRequirements("");
+    //     console.log("Post successful!");
+    //   } else {
+    //     console.error(
+    //       "Failed to post data:",
+    //       response.status,
+    //       response.statusText
+    //     );
+    //   }
+    // } catch (error) {
+    //   console.error("Error posting data:", error);
+    // }
   };
 
   return (

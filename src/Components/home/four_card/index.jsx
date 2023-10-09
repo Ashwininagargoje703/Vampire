@@ -41,7 +41,7 @@ function FourCardPage() {
         <Typography fontSize={40}>
           Hundreds of Jobs From All Over the Globe
         </Typography>
-        {data.slice(0, 3).map((data, idx) => (
+        {data?.slice(0, 3).map((data, idx) => (
           <Card sx={{ p: 4, mb: 2 }}>
             <Stack direction={"row"} justifyContent={"space-between"}>
               <Box textAlign={"left"}>

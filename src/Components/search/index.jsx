@@ -49,6 +49,7 @@ const JobSearch = () => {
           textAlign: "center",
           justifyContent: "center",
           alignItems: "center",
+          zIndex: 0,
         }}
       >
         <Box className="search_input">

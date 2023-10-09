@@ -13,6 +13,7 @@ const JobListingCard = ({
   createdAt,
 }) => {
   const [jobId, setJobId] = useState(0);
+
   const handleJobClick = (jobId) => {
     // Store jobId in localStorage
     localStorage.setItem("jobId", jobId);
@@ -50,7 +51,7 @@ const JobListingCard = ({
         </Typography>
         {responsibilities && (
           <ul style={{ listStyleType: "circle" }}>
-            {responsibilities.slice(0, 3).map((responsibility, index) => (
+            {responsibilities?.slice(0, 3).map((responsibility, index) => (
               <li key={index}>{responsibility}</li>
             ))}
           </ul>

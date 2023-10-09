@@ -1,16 +1,20 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { GoogleLogin, GoogleLogout } from "react-google-login";
 import logo from "./../../Components/assest/logo.png";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import axios from "axios";
 // import { useNavigate } from "react-router";
 import { Link, useNavigate } from "react-router-dom";
 import SwipeableTextMobileStepper from "../slider";
+import { backend_url } from "../../http-backend";
+import { useCookies } from "react-cookie";
+
 export default function Login() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [cookies, setCookie] = useCookies(["user"]);
+
   // console.log(userName)
   const handleSubmit = async () => {
     console.log("get hit here");
@@ -19,16 +23,17 @@ export default function Login() {
       password,
     };
 
-    let userData = await axios.post("`${backend_url}/admin/login", loginData);
+    let userData = await axios.post(`${backend_url}/admin/login`, loginData);
     console.log(userData.data.data);
 
     if (userData) {
       console.log("hit here only");
-      localStorage.setItem("serviceToken", userData.data.data.token);
-      localStorage.setItem("role", userData.data.data.role);
-      localStorage.setItem("userName", userData.data.data.phoneNumber);
-      localStorage.setItem("name", userData.data.data.name);
-      localStorage.setItem("isLoggedIn", "true");
+      setCookie("serviceToken", userData.data.data.token);
+      setCookie("userId", userData.data.data.userId);
+      setCookie("role", userData.data.data.role);
+      setCookie("userName", userData.data.data.phoneNumber);
+      setCookie("name", userData.data.data.name);
+      setCookie("isLoggedIn", "true");
     }
 
     navigate("/");
