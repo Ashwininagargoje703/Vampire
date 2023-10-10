@@ -46,6 +46,40 @@ const JobPostCard = ({ searchResults, setSearchResults }) => {
       });
   };
 
+  function timeAgoFromMongoData(mongoTimestamp) {
+    try {
+      // Parse the MongoDB timestamp string into a Date object
+      const mongoTime = new Date(mongoTimestamp);
+
+      // Get the current time
+      const currentTime = new Date();
+
+      // Calculate the time difference in milliseconds
+      const timeDifference = currentTime - mongoTime;
+
+      // Define time intervals
+      const intervals = [
+        { label: 'year', seconds: 31536000 }, // 365 days
+        { label: 'month', seconds: 2592000 }, // 30 days
+        { label: 'day', seconds: 86400 }, // 24 hours
+        { label: 'hour', seconds: 3600 }, // 60 minutes
+        { label: 'minute', seconds: 60 }, // 60 seconds
+      ];
+
+      // Find the appropriate interval
+      for (const interval of intervals) {
+        const intervalValue = Math.floor(timeDifference / (interval.seconds * 1000));
+        if (intervalValue >= 1) {
+          return intervalValue === 1 ? `1 ${interval.label} ago` : `${intervalValue} ${interval.label}s ago`;
+        }
+      }
+
+        // If the time difference is less than a minute, return "just now"
+        return "just now";
+    } catch (error) {
+        return error.toString(); // Handle parsing errors or other exceptions as needed
+    }
+}
   // const checkedIfSavedPostExists = ( jobId) => {
   //   let exists = false;
   //   savedPosts?.forEach((item) => {
@@ -92,9 +126,14 @@ const JobPostCard = ({ searchResults, setSearchResults }) => {
             }}
             key={searchResults?._id}
           >
-            <Typography fontSize={18} fontWeight={600}>
-              {data?.title}
-            </Typography>
+            <Box sx={{display:'flex',justifyContent:'space-between'}}>
+              <Typography fontSize={18} fontWeight={600}>
+                {data?.title}
+              </Typography>
+              <Typography fontSize={18} fontWeight={600}>
+                {timeAgoFromMongoData(data?.createdAt)}
+              </Typography>
+            </Box>
             <Typography>{data?.relatedTo}</Typography>
             <Typography>{data?.location}</Typography>
             <Typography fontWeight={600}>
