@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button, Card, Typography } from "@mui/material";
+import { Box, Button, Card, Typography, useMediaQuery } from "@mui/material";
 import { BsFillBagPlusFill } from "react-icons/bs";
 import JobDetailsDialogs from "../Job-more-info/JobInfo";
-import { doRequest, getRequest } from "../../../services/request";
+import { doRequest, doRequests } from "../../../services/request";
 import { backend_url } from "../../../http-backend";
 import { Cookies, useCookies } from "react-cookie";
 
@@ -13,34 +13,6 @@ const JobPostCard = ({ searchResults, setSearchResults }) => {
 
   const cookie = new Cookies();
   const userId = cookie.get("userId");
-
-  const checkSavedJob = async (userId, jobId) => {
-    try {
-      const response = await fetch(
-        `${backend_url}/post/checkSavedJob?userId=${userId}&jobId=${jobId}`,
-        {
-          method: "GET",
-        }
-      );
-      if (response.ok) {
-        const data = await response.json();
-        setSavedStatus((prevStatus) => ({
-          ...prevStatus,
-          [jobId]: data.saved,
-        }));
-      } else {
-        console.error("Error checking saved job:", response.status);
-      }
-    } catch (error) {
-      console.error("Error checking saved job:", error);
-    }
-  };
-
-  useEffect(() => {
-    searchResults?.forEach((data) => {
-      checkSavedJob(userId, data._id);
-    });
-  }, [userId]);
 
   const handleJobClick = (jobId) => {
     // Store jobId in localStorage
@@ -74,6 +46,18 @@ const JobPostCard = ({ searchResults, setSearchResults }) => {
       });
   };
 
+  // const checkedIfSavedPostExists = ( jobId) => {
+  //   let exists = false;
+  //   savedPosts?.forEach((item) => {
+  //     if (item._id ==  jobId) {
+  //       exists = true;
+  //       return;
+  //     }
+  //   });
+  //   return exists;
+  // };
+  const isMobile = useMediaQuery("(max-width: 600px)");
+
   return (
     <Box
       sx={{
@@ -103,7 +87,7 @@ const JobPostCard = ({ searchResults, setSearchResults }) => {
               p: 2,
               mb: 2,
               border: "1px solid #d4d2d0",
-              maxWidth: 900,
+              width: isMobile ? "100%" : "960px",
               flexDirection: "column",
             }}
             key={searchResults?._id}
@@ -120,28 +104,28 @@ const JobPostCard = ({ searchResults, setSearchResults }) => {
             {data?.responsibilities && (
               <ul style={{ listStyleType: "circle" }}>
                 {data.responsibilities
-                  ?.slice(0, 3)
-                  ?.map((responsibility, index) => (
+                  .slice(0, 3)
+                  .map((responsibility, index) => (
                     <li key={index}>{responsibility}</li>
                   ))}
+                {data.responsibilities.length > 3 && (
+                  <li>
+                    + {data.responsibilities.length - 3} more responsibilities
+                  </li>
+                )}
               </ul>
             )}
-            {savedStatus[data._id] ? (
-              <Button variant="outlined" color="primary" disabled>
-                Saved
-              </Button>
-            ) : (
-              <Button
-                variant="outlined"
-                color="primary"
-                onClick={() => handleSubmit(data)}
-              >
-                Save Job
-              </Button>
-            )}
+            <Button
+              variant="outlined"
+              color="primary"
+              disabled={savedStatus[data._id]} // Disable the button if the job is saved
+              onClick={() => handleSubmit(data)}
+            >
+              {savedStatus[data._id] ? "Saved" : "Save Job"}
+            </Button>
 
             <Button onClick={() => handleJobClick(data?._id)}>
-              <JobDetailsDialogs Title={data?.title} />
+              <JobDetailsDialogs title={data?.title} />
             </Button>
           </Card>
         ))}

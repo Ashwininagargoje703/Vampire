@@ -5,6 +5,7 @@ import JobDetailsPageRoute from "./job-details-page/JobDetailsPageRoute";
 import JobSearchPageRoute from "./job-search-page/JobSearchPageRoute";
 import LoginPageRoute from "./login-page/loginPageRoute";
 import RegisterPageRoute from "./register-page/RegisterPageRoute";
+import SavedPageRoute from "./saved-page/SavedPageRoute";
 import UplodeImagPageRoute from "./uplode-image-page/uplodeimageRoute";
 
 const ROUTES = [
@@ -15,6 +16,7 @@ const ROUTES = [
   JobDetailsPageRoute,
   JobSearchPageRoute,
   ForgotPasswordRoute,
+  SavedPageRoute,
   RegisterPageRoute,
 ];
 

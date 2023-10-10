@@ -9,6 +9,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 import FindJob from "../Find-Job";
 import { backend_url } from "../../http-backend";
+import { useMediaQuery } from "@mui/material";
 
 const JobSearch = () => {
   const [title, setTitle] = useState("");
@@ -39,12 +40,13 @@ const JobSearch = () => {
   useEffect(() => {
     handleSearch();
   }, []);
+  const isMobile = useMediaQuery("(max-width: 600px)");
 
   return (
     <>
       <Box
         sx={{
-          display: "flex",
+          display: isMobile ? "grid" : "flex",
           gap: 5,
           textAlign: "center",
           justifyContent: "center",
@@ -59,7 +61,7 @@ const JobSearch = () => {
             onChange={handleTitleChange}
             value={title}
             sx={{
-              width: 400,
+              width: isMobile ? "100%" : 400,
               border: "1px solid yellowgreen",
               borderRadius: "4px",
             }}
@@ -78,7 +80,8 @@ const JobSearch = () => {
             placeholder="Where city, state or pin code"
             value={location}
             sx={{
-              width: 400,
+              width: isMobile ? "100%" : 400,
+
               border: "1px solid yellowgreen",
               borderRadius: "4px",
               "& .MuiInputBase-input:focus": {

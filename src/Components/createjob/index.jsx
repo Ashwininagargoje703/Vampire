@@ -5,7 +5,7 @@ import { doRequest } from "../../services/request";
 const Createjob = () => {
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
-  const [description, setDescription] = useState("");
+  const [discription, setDiscription] = useState("");
   const [relatedTo, setRelatedTo] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [responsibilities, setResponsibilities] = useState("");
@@ -14,21 +14,51 @@ const Createjob = () => {
   const [salaryEnd, setSalaryEnd] = useState("");
   const [shift, setShift] = useState("");
   const [requirements, setRequirements] = useState("");
+  const [qualifications, setQualifications] = useState("");
+  const [education, setEducation] = useState("");
+  const [experience, setExperience] = useState("");
+  const [noticePeriod, setNoticePeriod] = useState("");
+  const [jobType, setJobType] = useState("");
+  const [totalExp, setTotalExp] = useState("");
+  const [language, setLanguage] = useState("");
 
   const handleSubmit = async (e) => {
+    const parseCommaSeparatedString = (str) => {
+      return str.split(",").map((item) => item.trim());
+    };
+    const parseCommaSeparatedStringTags = (str) => {
+      return str.split(",").map((item) => ({ name: item.trim() }));
+    };
+    const responsibilitiesArray = parseCommaSeparatedString(responsibilities);
+    const requirementsArray = parseCommaSeparatedString(requirements);
+    const tagsArray = parseCommaSeparatedStringTags(tags);
+    const startSalary = parseFloat(salaryStart);
+    const endSalary = parseFloat(salaryEnd);
+
+    const qualificationsArray = parseCommaSeparatedString(qualifications);
+    const educationArray = parseCommaSeparatedString(education);
+    const experienceArray = parseCommaSeparatedString(experience);
+    const languageArray = parseCommaSeparatedString(language);
     e.preventDefault();
     const post = {
       title,
       location,
-      description,
+      discription,
       relatedTo,
       imageUrl,
-      responsibilities,
-      tags,
-      salaryStart,
-      salaryEnd,
+      responsibilities: responsibilitiesArray,
+      tags: tagsArray,
+      salaryStart: !isNaN(startSalary) ? startSalary : null,
+      salaryEnd: !isNaN(endSalary) ? endSalary : null,
       shift,
-      requirements,
+      requirements: requirementsArray,
+      qualifications: qualificationsArray,
+      education: educationArray,
+      experience: experienceArray,
+      language: languageArray,
+      noticePeriod,
+      jobType,
+      totalExp,
     };
     let payload = JSON.stringify(post);
     doRequest({
@@ -40,7 +70,7 @@ const Createjob = () => {
         console.log("knowledge", post);
         setTitle("");
         setLocation("");
-        setDescription("");
+        setDiscription("");
         setRelatedTo("");
         setImageUrl("");
         setResponsibilities("");
@@ -53,40 +83,6 @@ const Createjob = () => {
       .catch((error) => {
         console.error("Error updating knowledge:", error);
       });
-
-    // try {
-    //   const response = await fetch(`${backend_url}/post/createPostWithTitle`, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(post),
-    //   });
-
-    //   if (response.ok) {
-    //     // Reset form
-    //     setTitle("");
-    //     setLocation("");
-    //     setDescription("");
-    //     setRelatedTo("");
-    //     setImageUrl("");
-    //     setResponsibilities("");
-    //     setTags("");
-    //     setSalaryStart("");
-    //     setSalaryEnd("");
-    //     setShift("");
-    //     setRequirements("");
-    //     console.log("Post successful!");
-    //   } else {
-    //     console.error(
-    //       "Failed to post data:",
-    //       response.status,
-    //       response.statusText
-    //     );
-    //   }
-    // } catch (error) {
-    //   console.error("Error posting data:", error);
-    // }
   };
 
   return (
@@ -95,6 +91,7 @@ const Createjob = () => {
       justifyContent={"center"}
       alignItems={"center"}
       display={"flex"}
+      p={2}
     >
       <Box component="form" onSubmit={handleSubmit} maxWidth={400}>
         <Typography variant="h5" component="h2">
@@ -109,34 +106,38 @@ const Createjob = () => {
           margin="normal"
           fullWidth
         />
-        <TextField
-          required
-          label="Location"
-          variant="outlined"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-          margin="normal"
-          fullWidth
-        />
+        <Box display={"flex"} gap={5}>
+          <TextField
+            required
+            label="Location"
+            variant="outlined"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            margin="normal"
+            fullWidth
+          />
+
+          <TextField
+            label="Related To"
+            variant="outlined"
+            value={relatedTo}
+            onChange={(e) => setRelatedTo(e.target.value)}
+            margin="normal"
+            fullWidth
+          />
+        </Box>
         <TextField
           required
           label="Description"
           variant="outlined"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          value={discription}
+          onChange={(e) => setDiscription(e.target.value)}
           margin="normal"
           fullWidth
           multiline
           rows={4}
         />
-        <TextField
-          label="Related To"
-          variant="outlined"
-          value={relatedTo}
-          onChange={(e) => setRelatedTo(e.target.value)}
-          margin="normal"
-          fullWidth
-        />
+
         <TextField
           label="Image URL"
           variant="outlined"
@@ -148,7 +149,11 @@ const Createjob = () => {
         <TextField
           label="Responsibilities"
           variant="outlined"
-          value={responsibilities}
+          value={
+            Array.isArray(responsibilities)
+              ? responsibilities.map((item) => item.name).join(", ")
+              : responsibilities
+          }
           onChange={(e) => setResponsibilities(e.target.value)}
           margin="normal"
           fullWidth
@@ -158,44 +163,133 @@ const Createjob = () => {
         <TextField
           label="Tags"
           variant="outlined"
-          value={tags}
+          value={
+            Array.isArray(tags)
+              ? tags.map((item) => item.name).join(", ")
+              : tags
+          }
           onChange={(e) => setTags(e.target.value)}
           margin="normal"
           fullWidth
         />
-        <TextField
-          label="Salary Start"
-          variant="outlined"
-          value={salaryStart}
-          onChange={(e) => setSalaryStart(e.target.value)}
-          margin="normal"
-          fullWidth
-        />
-        <TextField
-          label="Salary End"
-          variant="outlined"
-          value={salaryEnd}
-          onChange={(e) => setSalaryEnd(e.target.value)}
-          margin="normal"
-          fullWidth
-        />
+        <Box display={"flex"} gap={5}>
+          <TextField
+            label="Salary Start"
+            variant="outlined"
+            value={salaryStart}
+            onChange={(e) => setSalaryStart(e.target.value)}
+            margin="normal"
+            fullWidth
+          />
+          <TextField
+            label="Salary End"
+            variant="outlined"
+            value={salaryEnd}
+            onChange={(e) => setSalaryEnd(e.target.value)}
+            margin="normal"
+            fullWidth
+          />
+        </Box>
 
         <TextField
-          label="shift"
+          label="Requirements"
           variant="outlined"
-          value={shift}
-          onChange={(e) => setShift(e.target.value)}
-          margin="normal"
-          fullWidth
-        />
-        <TextField
-          label="requirements"
-          variant="outlined"
-          value={requirements}
+          value={
+            Array.isArray(requirements)
+              ? requirements.map((item) => item.name).join(", ")
+              : requirements
+          }
           onChange={(e) => setRequirements(e.target.value)}
           margin="normal"
           fullWidth
         />
+        <TextField
+          label="Qualifications"
+          variant="outlined"
+          value={
+            Array.isArray(qualifications)
+              ? qualifications.map((item) => item.name).join(", ")
+              : qualifications
+          }
+          onChange={(e) => setQualifications(e.target.value)}
+          margin="normal"
+          fullWidth
+        />
+        <TextField
+          label="Education"
+          variant="outlined"
+          value={
+            Array.isArray(education)
+              ? education.map((item) => item.name).join(", ")
+              : education
+          }
+          onChange={(e) => setEducation(e.target.value)}
+          margin="normal"
+          fullWidth
+        />
+        <Box display={"flex"} gap={5}>
+          <TextField
+            label="shift"
+            variant="outlined"
+            value={shift}
+            onChange={(e) => setShift(e.target.value)}
+            margin="normal"
+            fullWidth
+          />
+          <TextField
+            label="Language"
+            variant="outlined"
+            value={
+              Array.isArray(language)
+                ? language.map((item) => item.name).join(", ")
+                : language
+            }
+            onChange={(e) => setLanguage(e.target.value)}
+            margin="normal"
+            fullWidth
+          />
+        </Box>
+        <Box display={"flex"} gap={5}>
+          <TextField
+            label="Experience"
+            variant="outlined"
+            value={
+              Array.isArray(experience)
+                ? experience.map((item) => item.name).join(", ")
+                : experience
+            }
+            onChange={(e) => setExperience(e.target.value)}
+            margin="normal"
+            fullWidth
+          />
+          <TextField
+            label="Notice Period"
+            variant="outlined"
+            value={noticePeriod}
+            onChange={(e) => setNoticePeriod(e.target.value)}
+            margin="normal"
+            fullWidth
+          />
+        </Box>
+        <Box display={"flex"} gap={5}>
+          <TextField
+            label="Job Type"
+            variant="outlined"
+            value={jobType}
+            onChange={(e) => setJobType(e.target.value)}
+            margin="normal"
+            fullWidth
+          />
+          <TextField
+            label="Total Experience"
+            variant="outlined"
+            value={totalExp}
+            onChange={(e) => setTotalExp(e.target.value)}
+            margin="normal"
+            fullWidth
+          />
+        </Box>
+
         <Button
           onSubmit={handleSubmit}
           sx={{

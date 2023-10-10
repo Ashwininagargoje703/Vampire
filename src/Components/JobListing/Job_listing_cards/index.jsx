@@ -49,13 +49,14 @@ const JobListingCard = ({
           <BsFillBagPlusFill /> {"  "}
           {totalExp}
         </Typography>
-        {responsibilities && (
+        {/* {responsibilities && (
           <ul style={{ listStyleType: "circle" }}>
             {responsibilities?.slice(0, 3).map((responsibility, index) => (
               <li key={index}>{responsibility}</li>
             ))}
           </ul>
-        )}
+        )} */}
+
         <Box justifyContent={"space-between"} display={"flex"}>
           <Button variant="outlined" color="primary">
             Save Job

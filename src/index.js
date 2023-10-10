@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { CometChat } from "@cometchat-pro/chat";
 import { BrowserRouter } from "react-router-dom";
 import { CookiesProvider } from "react-cookie";
+import { JobDataContextProvider } from "./context/JobDataContext";
 
 const appID = "237083d8bdec245c";
 const region = "EU";
@@ -28,9 +29,11 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
   <BrowserRouter>
-    <CookiesProvider>
-      <App />
-    </CookiesProvider>
+    <JobDataContextProvider>
+      <CookiesProvider>
+        <App />
+      </CookiesProvider>
+    </JobDataContextProvider>
   </BrowserRouter>
   // </React.StrictMode>
 );

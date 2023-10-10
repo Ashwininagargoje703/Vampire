@@ -1,6 +1,6 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
-import logo from "./../../Components/assest/logo.png";
+import logo from "./../../Components/assest/logo.jpeg";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
