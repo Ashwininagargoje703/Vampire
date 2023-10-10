@@ -4,8 +4,8 @@ import JobPostMoreInfoCard from "../../Components/Find-Job/Job-more-info";
 import JobPostCard from "../../Components/Find-Job/job-post-card";
 import JobListing from "../../Components/JobListing";
 import { Box } from "@mui/material";
-import NavbarApp from "../../Components/before-login-home/navbar";
 import CreatePostForm from "../../Components/createjob";
+import NavbarApp from "../../Components/navbar";
 
 function JobDetailsPage() {
   return (

@@ -1,7 +1,7 @@
 import React from "react";
 import { Box } from "@mui/material";
-import NavbarApp from "../../Components/before-login-home/navbar";
 import SavedPost from "../../Components/Saved_Post";
+import NavbarApp from "../../Components/navbar";
 
 function SavedPage() {
   return (

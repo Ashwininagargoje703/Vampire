@@ -1,6 +1,6 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
-import logo from "./../../Components/assest/logo.jpeg";
+import logo from "./../../Components/assest/logo2.png";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -81,7 +81,7 @@ export default function Register() {
         <img
           src={logo}
           alt="logo"
-          style={{ marginTop: "-30px", maxHeight: "200px" }}
+          style={{ height: "150px", width: "250px" }}
         />
         <Box display={"flex"} mb={3} gap={1}>
           <PersonOutlineIcon style={{ fontSize: 30, color: "yellowgreen" }} />

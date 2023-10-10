@@ -5,8 +5,8 @@ import SecondCardPage from "./second_card";
 import ThirdCardPage from "./third_card";
 import FourCardPage from "./four_card";
 import SixCardPage from "./six_card";
-import NavbarApp from "../before-login-home/navbar";
 import Footer from "../Footer";
+import NavbarApp from "../navbar";
 
 function HomePage() {
   return (

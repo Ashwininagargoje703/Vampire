@@ -5,7 +5,7 @@ import JobPostCard from "../../Components/Find-Job/job-post-card";
 import JobListing from "../../Components/JobListing";
 import JobSearch from "../../Components/search";
 import { Box } from "@mui/material";
-import NavbarApp from "../../Components/before-login-home/navbar";
+import NavbarApp from "../../Components/navbar";
 
 function JobDetailsPage() {
   return (

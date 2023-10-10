@@ -1,7 +1,7 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
-import logo from "./../../Components/assest/logo.jpeg";
+import logo from "./../../Components/assest/logo2.png";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
