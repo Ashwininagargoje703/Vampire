@@ -15,10 +15,7 @@ function JobDetailsPage() {
       </Box>
       <br />
       <br />
-      <br />
-      <br />
-      <br />
-      <br />
+
       <CreatePostForm />
       {/* <JobListing /> */}
     </>

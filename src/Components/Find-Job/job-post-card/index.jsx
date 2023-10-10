@@ -116,8 +116,16 @@ const JobPostCard = ({ searchResults, setSearchResults }) => {
               </ul>
             )}
             <Button
-              variant="outlined"
-              color="primary"
+              sx={{
+                color: "white",
+                backgroundColor: "#9acd32",
+                textTransform: "none",
+                ":hover": {
+                  color: "white",
+                  backgroundColor: "#9acd32",
+                  textTransform: "none",
+                },
+              }}
               disabled={savedStatus[data._id]} // Disable the button if the job is saved
               onClick={() => handleSubmit(data)}
             >

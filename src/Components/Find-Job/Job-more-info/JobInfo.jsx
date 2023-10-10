@@ -18,7 +18,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-export default function JobDetailsDialogs({ Title }) {
+export default function JobDetailsDialogs({ title }) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -30,7 +30,19 @@ export default function JobDetailsDialogs({ Title }) {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button
+        sx={{
+          color: "white",
+          backgroundColor: "#9acd32",
+          textTransform: "none",
+          ":hover": {
+            color: "white",
+            backgroundColor: "#9acd32",
+            textTransform: "none",
+          },
+        }}
+        onClick={handleClickOpen}
+      >
         More Info
       </Button>
       <BootstrapDialog
@@ -42,7 +54,7 @@ export default function JobDetailsDialogs({ Title }) {
           sx={{ m: 0, p: 2, fontWeight: 600 }}
           id="customized-dialog-title"
         >
-          {Title}
+          {title}
         </DialogTitle>
         <IconButton
           aria-label="close"
