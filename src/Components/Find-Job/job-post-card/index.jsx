@@ -1,28 +1,49 @@
-import React, { useEffect, useState } from "react";
-import { Box, Button, Card, Typography, useMediaQuery } from "@mui/material";
+import React, { useContext, useEffect, useState } from "react";
+import {
+  Box,
+  Button,
+  Card,
+  Snackbar,
+  SnackbarContent,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import { BsFillBagPlusFill } from "react-icons/bs";
 import JobDetailsDialogs from "../Job-more-info/JobInfo";
 import { doRequest, doRequests } from "../../../services/request";
 import { backend_url } from "../../../http-backend";
 import { Cookies, useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
+import { JobDataContext } from "../../../context/JobDataContext";
 
 const JobPostCard = ({ searchResults, setSearchResults }) => {
   const [jobId, setJobId] = useState(0);
-  const [savedJobs, setSavedJobs] = useState([]);
+  const [isSaved, setIsSaved] = useState(false);
+  const { savedata, data } = useContext(JobDataContext);
   const [savedStatus, setSavedStatus] = useState({});
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const handleSnackbarOpen = () => {
+    setSnackbarOpen(true);
+  };
+
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  };
 
   const cookie = new Cookies();
   const userId = cookie.get("userId");
+  const navigate = useNavigate();
 
   const handleJobClick = (jobId) => {
-    // Store jobId in localStorage
     localStorage.setItem("jobId", jobId);
-    // Set jobId in state
     setJobId(jobId);
-    // Perform any other action with jobId as needed
   };
 
   const handleSubmit = async (data) => {
+    if (!userId) {
+      navigate("/login");
+      return;
+    }
     const post = {
       userId: userId,
       jobId: data?._id,
@@ -39,23 +60,31 @@ const JobPostCard = ({ searchResults, setSearchResults }) => {
     })
       .then((response) => {
         console.log("Data successfully posted:", post);
-        // You can do something here after a successful POST request.
+        setIsSaved(true);
+        handleSnackbarOpen();
       })
       .catch((error) => {
         console.error("Error updating knowledge:", error);
       });
   };
 
-  // const checkedIfSavedPostExists = ( jobId) => {
-  //   let exists = false;
-  //   savedPosts?.forEach((item) => {
-  //     if (item._id ==  jobId) {
-  //       exists = true;
-  //       return;
-  //     }
-  //   });
-  //   return exists;
-  // };
+  const checkedIfSavedPostExists = () => {
+    const _id = data._id;
+    console.log("Checking if job is saved with jobId:", _id);
+    console.log("Saved jobs data:", savedata);
+
+    let exists = false;
+    savedata?.forEach((item) => {
+      if (item._id === _id) {
+        exists = true;
+        return;
+      }
+    });
+
+    console.log("Job saved status:", exists);
+    return exists;
+  };
+
   const isMobile = useMediaQuery("(max-width: 600px)");
 
   return (
@@ -115,22 +144,40 @@ const JobPostCard = ({ searchResults, setSearchResults }) => {
                 )}
               </ul>
             )}
-            <Button
-              sx={{
-                color: "white",
-                backgroundColor: "#9acd32",
-                textTransform: "none",
-                ":hover": {
+            {checkedIfSavedPostExists() ? (
+              <Button
+                sx={{
                   color: "white",
                   backgroundColor: "#9acd32",
                   textTransform: "none",
-                },
-              }}
-              disabled={savedStatus[data._id]} // Disable the button if the job is saved
-              onClick={() => handleSubmit(data)}
-            >
-              {savedStatus[data._id] ? "Saved" : "Save Job"}
-            </Button>
+                  ":hover": {
+                    color: "white",
+                    backgroundColor: "#9acd32",
+                    textTransform: "none",
+                  },
+                }}
+                disabled={savedStatus[data._id]} // Disable the button if the job is saved
+                onClick={() => handleSubmit(data)}
+              >
+                Saved
+              </Button>
+            ) : (
+              <Button
+                sx={{
+                  color: "white",
+                  backgroundColor: "#9acd32",
+                  textTransform: "none",
+                  ":hover": {
+                    color: "white",
+                    backgroundColor: "#9acd32",
+                    textTransform: "none",
+                  },
+                }}
+                onClick={() => handleSubmit(data)}
+              >
+                Save Job
+              </Button>
+            )}
 
             <Button onClick={() => handleJobClick(data?._id)}>
               <JobDetailsDialogs title={data?.title} />
@@ -138,6 +185,17 @@ const JobPostCard = ({ searchResults, setSearchResults }) => {
           </Card>
         ))}
       </Box>
+
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000} // Adjust the duration as needed
+        onClose={handleSnackbarClose}
+      >
+        <SnackbarContent
+          style={{ backgroundColor: "#9acd32" }} // Adjust the background color here
+          message="Job saved successfully"
+        />
+      </Snackbar>
     </Box>
   );
 };

@@ -8,6 +8,8 @@ import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 export default function ProfileMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -18,6 +20,28 @@ export default function ProfileMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const navigate = useNavigate();
+  const [, , removeCookies] = useCookies([
+    "serviceToken",
+    "userId",
+    "role",
+    "userName",
+    "name",
+    "isLoggedIn",
+  ]);
+
+  const handleLogout = () => {
+    removeCookies("serviceToken");
+    removeCookies("userId");
+    removeCookies("role");
+    removeCookies("userName");
+    removeCookies("name");
+    removeCookies("isLoggedIn");
+    handleClose();
+    navigate("/login");
+  };
+
   return (
     <React.Fragment>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
@@ -78,7 +102,7 @@ export default function ProfileMenu() {
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleLogout}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

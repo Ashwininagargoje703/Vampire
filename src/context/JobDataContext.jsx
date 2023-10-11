@@ -7,6 +7,8 @@ export const JobDataContext = createContext();
 
 export const JobDataContextProvider = ({ children }) => {
   const [savedata, setSaveData] = useState([]);
+  const [data, setData] = useState([]);
+
   const cookie = new Cookies();
   const userId = cookie.get("userId");
 
@@ -25,11 +27,26 @@ export const JobDataContextProvider = ({ children }) => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  function fetchAppPost() {
+    getRequest({
+      url: `${backend_url}/post/getAllPublicPost`,
+    })
+      .then((res) => {
+        setData(res?.data?.data);
+      })
+      .catch((e) => {});
+  }
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <JobDataContext.Provider
       value={{
         savedata,
         setSaveData,
+        data,
+        fetchAppPost,
       }}
     >
       {children}
