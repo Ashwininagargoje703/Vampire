@@ -1,9 +1,9 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Typography, useMediaQuery } from "@mui/material";
 import React, { useState } from "react";
-// import "./styles.css";
-import { GoogleLogin, GoogleLogout } from "react-google-login";
 
 function ThirdCardPage() {
+  const isMobile = useMediaQuery("(max-width: 600px)");
+
   return (
     <Box
       sx={{
@@ -17,7 +17,12 @@ function ThirdCardPage() {
         alignItems: "center",
       }}
     >
-      <Box textAlign={"left"} p={4} width={600} mr={15}>
+      <Box
+        textAlign={isMobile ? "center" : "left"}
+        p={4}
+        width={600}
+        mr={isMobile ? "" : 15}
+      >
         <Typography fontSize={40} color={"white"}>
           Make Recruiting Your Competitive Advantage
         </Typography>

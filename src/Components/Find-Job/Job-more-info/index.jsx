@@ -55,14 +55,14 @@ const JobPostMoreInfoCard = () => {
             <Box mt={1} gap={4} display={"flex"}>
               <Button
                 sx={{
-                  backgroundColor: "yellowgreen",
+                  backgroundColor: "#004c3d",
                   color: "white",
                   fontWeight: 600,
                   borderRadius: "8px",
                   textTransform: "none",
                   p: 1.5,
                   "&:hover": {
-                    backgroundColor: "yellowgreen",
+                    backgroundColor: "#004c3d",
                     color: "white",
                   },
                 }}
@@ -85,8 +85,7 @@ const JobPostMoreInfoCard = () => {
                 background: "#F5F5F5" /* Set background color of scrollbar */,
               },
               "&::-webkit-scrollbar-thumb": {
-                backgroundColor:
-                  "yellowgreen" /* Set color of scrollbar thumb */,
+                backgroundColor: "#004c3d" /* Set color of scrollbar thumb */,
               },
               height: "70vh",
             }}

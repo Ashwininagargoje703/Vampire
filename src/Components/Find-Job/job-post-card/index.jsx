@@ -147,7 +147,7 @@ const JobPostCard = ({ searchResults, setSearchResults }) => {
           background: "#F5F5F5" /* Set background color of scrollbar */,
         },
         "&::-webkit-scrollbar-thumb": {
-          backgroundColor: "yellowgreen" /* Set color of scrollbar thumb */,
+          backgroundColor: "#004c3d" /* Set color of scrollbar thumb */,
         },
       }}
     >
@@ -201,11 +201,11 @@ const JobPostCard = ({ searchResults, setSearchResults }) => {
               <Button
                 sx={{
                   color: "white",
-                  backgroundColor: "#9acd32",
+                  backgroundColor: "#004c3d",
                   textTransform: "none",
                   ":hover": {
                     color: "white",
-                    backgroundColor: "#9acd32",
+                    backgroundColor: "#004c3d",
                     textTransform: "none",
                   },
                 }}
@@ -218,11 +218,11 @@ const JobPostCard = ({ searchResults, setSearchResults }) => {
               <Button
                 sx={{
                   color: "white",
-                  backgroundColor: "#9acd32",
+                  backgroundColor: "#004c3d",
                   textTransform: "none",
                   ":hover": {
                     color: "white",
-                    backgroundColor: "#9acd32",
+                    backgroundColor: "#004c3d",
                     textTransform: "none",
                   },
                 }}
@@ -245,7 +245,7 @@ const JobPostCard = ({ searchResults, setSearchResults }) => {
         onClose={handleSnackbarClose}
       >
         <SnackbarContent
-          style={{ backgroundColor: "#9acd32" }} // Adjust the background color here
+          style={{ backgroundColor: "#004c3d" }} // Adjust the background color here
           message="Job saved successfully"
         />
       </Snackbar>

@@ -31,7 +31,7 @@ const JobListingCard = ({
           background: "#F5F5F5" /* Set background color of scrollbar */,
         },
         "&::-webkit-scrollbar-thumb": {
-          backgroundColor: "yellowgreen" /* Set color of scrollbar thumb */,
+          backgroundColor: "#004c3d" /* Set color of scrollbar thumb */,
         },
       }}
     >

@@ -17,7 +17,7 @@ export default function NavbarApp() {
         height: "90px",
         display: "flex",
         justifyContent: "space-between",
-        backgroundColor: "yellowgreen",
+        backgroundColor: "#004c3d",
       }}
     >
       <Box

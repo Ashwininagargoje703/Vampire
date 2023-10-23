@@ -1,4 +1,10 @@
-import { Box, Button, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  TextField,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import React, { useState } from "react";
 import logo from "./../../Components/assest/logo2.png";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
@@ -38,7 +44,102 @@ export default function Login() {
 
     navigate("/");
   };
-  return (
+
+  const isMobile = useMediaQuery("(max-width: 600px)");
+
+  return isMobile ? (
+    <Box
+      sx={{
+        backgroundColor: "white",
+        width: "100%",
+        textAlign: "center",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Link to="/home">
+        {" "}
+        <img
+          src={logo}
+          alt="logo"
+          style={{ height: "150px", width: "250px", cursor: "pointer" }}
+        />
+      </Link>
+      <Box display={"flex"} mb={3} gap={1} pl={2}>
+        <PersonOutlineIcon style={{ fontSize: 30, color: "#004c3d" }} />
+        <Typography fontSize={18}>Sign In</Typography>
+      </Box>
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        display={"grid"}
+        gap={3}
+        p={2}
+      >
+        <TextField
+          id="outlined-multiline-flexible"
+          sx={{
+            "&.Mui-focused .MuiInputLabel-root": {
+              color: "green",
+            },
+          }}
+          label="User Name"
+          multiline
+          maxRows={4}
+          onChange={(e) => setUserName(e.target.value)}
+        />
+        <TextField
+          id="outlined-textarea"
+          label="Password"
+          onChange={(e) => setPassword(e.target.value)}
+          multiline
+        />
+      </Box>
+      <Box>
+        <Button
+          onClick={handleSubmit}
+          sx={{
+            backgroundColor: "#004c3d",
+            border: "0.1px solid #004c3d",
+            borderRadius: "4px",
+            color: "white",
+            mt: 4,
+            p: 1.2,
+            pr: 8,
+            pl: 8,
+            fontWeight: 600,
+
+            "&:hover": {
+              backgroundColor: "white",
+              border: "0.1px solid #004c3d",
+              color: "#004c3d",
+            },
+          }}
+        >
+          Login
+        </Button>
+      </Box>
+      <Box display={"grid"} mt={2}>
+        <Link
+          to={"/register"}
+          style={{
+            textDecoration: "none",
+          }}
+        >
+          <Typography sx={{ fontSize: "16px", fontWeight: 600 }}>
+            {" "}
+            Don't have an account? Register
+          </Typography>
+        </Link>
+        <br />
+        <Link mt={2} style={{ textDecoration: "none" }} to={"/forgot-password"}>
+          <Typography sx={{ fontSize: "16px", fontWeight: 600 }}>
+            Forgot Password?
+          </Typography>{" "}
+        </Link>
+      </Box>
+    </Box>
+  ) : (
     <Box
       sx={{
         position: "relative",
@@ -77,7 +178,7 @@ export default function Login() {
           }}
         />
         <Box display={"flex"} mb={3} gap={1}>
-          <PersonOutlineIcon style={{ fontSize: 30, color: "yellowgreen" }} />
+          <PersonOutlineIcon style={{ fontSize: 30, color: "#004c3d" }} />
           <Typography fontSize={18}>Sign In</Typography>
         </Box>
 
@@ -106,8 +207,8 @@ export default function Login() {
           <Button
             onClick={handleSubmit}
             sx={{
-              backgroundColor: "yellowgreen",
-              border: "0.1px solid yellowgreen",
+              backgroundColor: "#004c3d",
+              border: "0.1px solid #004c3d",
               borderRadius: "4px",
               color: "white",
               mt: 4,
@@ -118,8 +219,8 @@ export default function Login() {
 
               "&:hover": {
                 backgroundColor: "white",
-                border: "0.1px solid yellowgreen",
-                color: "yellowgreen",
+                border: "0.1px solid #004c3d",
+                color: "#004c3d",
               },
             }}
           >

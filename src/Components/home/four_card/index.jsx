@@ -1,4 +1,11 @@
-import { Box, Button, Card, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  Stack,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { getRequest } from "../../../services/request";
@@ -26,15 +33,20 @@ function FourCardPage() {
   const handleLoadMore = () => {
     window.location.href = "/joblisting";
   };
+
+  const isMobile = useMediaQuery("(max-width: 600px)");
+
   return (
     <Box
       sx={{
         background: "white",
-        height: "500px",
+        height: isMobile ? "" : "500px",
         width: "100%",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        mt: isMobile ? 4 : 4,
+        p: 2,
       }}
     >
       <Box textAlign={"center"}>
@@ -61,14 +73,16 @@ function FourCardPage() {
           onClick={handleLoadMore}
           sx={{
             backgroundColor: "white",
-            border: "1px solid yellowgreen",
+            border: "1px solid #004c3d",
             borderRadius: "4px",
-            color: "yellowgreen",
+            color: "#004c3d",
             mt: 2,
+            mb: 2,
             p: 1.2,
+            zIndex: 9,
             fontWeight: 600,
             "&:hover": {
-              backgroundColor: "yellowgreen",
+              backgroundColor: "#004c3d",
               color: "white",
             },
           }}

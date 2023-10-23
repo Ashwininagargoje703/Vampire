@@ -11,7 +11,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import logo from "../assest/logo2.png";
-import { Link as RouterLink } from "react-router-dom";
+import { Link, Link as RouterLink } from "react-router-dom";
 import { Cookies } from "react-cookie";
 
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
@@ -30,25 +30,9 @@ function NavbarApp(props) {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        <img
-          style={{
-            width: "80px",
-            height: "40px",
-          }}
-          src="https://i.ibb.co/6Dq6gdQ/Whats-App-Image-2023-10-10-at-5-17-12-PM-removebg-preview.png"
-          alt="logo"
-        />
-      </Typography>
-      <Divider />
+    <Box onClick={handleDrawerToggle}>
       <List>
-        <Box
-          display={"grid"}
-          gap={2}
-          textAlign={"left"}
-          sx={{ textAlign: "left !important" }}
-        >
+        <Box display={"grid"} gap={2} sx={{ textAlign: "left", mt: 6 }}>
           <Button
             sx={{ textTransform: "none", fontSize: 16, color: "black" }}
             component={RouterLink}
@@ -60,7 +44,7 @@ function NavbarApp(props) {
           <Button
             sx={{ textTransform: "none", fontSize: 16, color: "black" }}
             component={RouterLink}
-            to="/"
+            to="/company-review"
           >
             Company reviews
           </Button>
@@ -119,7 +103,7 @@ function NavbarApp(props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: "flex", backgroundColor: "#9acd32" }}>
+    <Box sx={{ display: "flex", backgroundColor: "#004c3d" }}>
       <CssBaseline />
       <Toolbar>
         <IconButton
@@ -136,14 +120,16 @@ function NavbarApp(props) {
           component="div"
           sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
         >
-          <img
-            style={{
-              width: "100px",
-              height: "50px",
-            }}
-            src="https://i.ibb.co/6Dq6gdQ/Whats-App-Image-2023-10-10-at-5-17-12-PM-removebg-preview.png"
-            alt="logo"
-          />
+          <Link to={"/"}>
+            <img
+              style={{
+                width: "100px",
+                height: "70px",
+              }}
+              src={logo}
+              alt="logo"
+            />
+          </Link>
         </Typography>
         <Box
           sx={{
@@ -164,7 +150,7 @@ function NavbarApp(props) {
             <Button
               sx={{ color: "#fff", textTransform: "none", fontSize: 16, ml: 4 }}
               component={RouterLink}
-              to="/"
+              to="/company-review"
             >
               Company reviews
             </Button>

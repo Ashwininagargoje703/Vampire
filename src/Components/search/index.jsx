@@ -62,7 +62,7 @@ const JobSearch = () => {
             value={title}
             sx={{
               width: isMobile ? "100%" : 400,
-              border: "1px solid yellowgreen",
+              border: "1px solid #004c3d",
               borderRadius: "4px",
             }}
             InputProps={{
@@ -82,11 +82,11 @@ const JobSearch = () => {
             sx={{
               width: isMobile ? "100%" : 400,
 
-              border: "1px solid yellowgreen",
+              border: "1px solid #004c3d",
               borderRadius: "4px",
               "& .MuiInputBase-input:focus": {
                 // Define styles for focused state
-                color: "yellowgreen", // Change color to blue for focused state
+                color: "#004c3d", // Change color to blue for focused state
               },
             }}
             onChange={handleLocationChange}
@@ -101,14 +101,14 @@ const JobSearch = () => {
         </Box>
         <Button
           sx={{
-            backgroundColor: "yellowgreen",
+            backgroundColor: "#004c3d",
             color: "white",
             fontWeight: 600,
             borderRadius: "8px",
             textTransform: "none",
             p: 1.5,
             "&:hover": {
-              backgroundColor: "yellowgreen",
+              backgroundColor: "#004c3d",
               color: "white",
             },
           }}

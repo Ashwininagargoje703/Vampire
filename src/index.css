@@ -17,5 +17,46 @@ code {
 }
 
 .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
-  color: yellowgreen !important;
+  color: #004c3d !important;
+}
+
+/* App.css */
+
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.section {
+  margin: 20px;
+}
+
+.company-cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.comparison-cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.company-card {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 10px;
+  width: 200px;
+}
+
+.comparison-card {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+
+.comparison-card .vs {
+  margin: 0 10px;
 }
