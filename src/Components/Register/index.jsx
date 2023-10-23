@@ -6,7 +6,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import React, { useState } from "react";
-import logo from "./../../Components/assest/logo2.png";
+import logo from "./../../Components/assest/LogoNew.png";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -67,13 +67,14 @@ export default function Register() {
       }}
     >
       <Link to="/home">
-        {" "}
         <img
           src={logo}
           alt="logo"
-          style={{ height: "150px", width: "250px", cursor: "pointer" }}
+          style={{ height: "200px", cursor: "pointer" }}
         />
       </Link>
+      <br />
+
       <Box display={"flex"} mb={3} gap={1} pl={2}>
         <PersonOutlineIcon style={{ fontSize: 30, color: "#004c3d" }} />
         <Typography fontSize={18}>Register</Typography>
@@ -145,7 +146,7 @@ export default function Register() {
                 pl: 8,
                 backgroundColor: "white",
                 border: "1px solid #004c3d",
-                color: "#004c3d",
+                color: "white",
                 borderRadius: "4px",
               },
             }}
@@ -171,8 +172,8 @@ export default function Register() {
         alignItems: "center",
         height: "100vh",
         width: "100%",
-        background:
-          "linear-gradient(rgba(154, 205, 50, 0.7), rgba(154, 205, 50, 0.7))",
+        backgroundImage:
+          "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPx6pqf2yUuWJvEkpuJ2oSxYNNalUgTrTA2qzBN08V&s)",
       }}
     >
       <Box>
@@ -192,11 +193,17 @@ export default function Register() {
           alignItems: "center",
         }}
       >
-        <img
-          src={logo}
-          alt="logo"
-          style={{ height: "150px", width: "250px" }}
-        />
+        <Link to="/home">
+          {" "}
+          <img
+            src={logo}
+            alt="logo"
+            style={{ height: "100px", cursor: "pointer" }}
+          />
+        </Link>
+        <br />
+        <br />
+
         <Box display={"flex"} mb={3} gap={1}>
           <PersonOutlineIcon style={{ fontSize: 30, color: "#004c3d" }} />
           <Typography fontSize={18}>Register</Typography>
@@ -209,14 +216,14 @@ export default function Register() {
               required
               id="outlined-multiline-flexible"
               label="Full Name"
-              sx={{ width: isMobile ? "150px" : 250 }}
+              sx={{ width: isMobile ? "150px" : 270 }}
             />
             <TextField
               onChange={(e) => setUserName(e.target.value)}
               required
               id="outlined-textarea"
               label="Phone Number / email"
-              sx={{ width: isMobile ? "150px" : 250 }}
+              sx={{ width: isMobile ? "150px" : 270 }}
             />
           </Box>
 
@@ -259,7 +266,7 @@ export default function Register() {
                   pl: 8,
                   backgroundColor: "white",
                   border: "1px solid #004c3d",
-                  color: "#004c3d",
+                  color: "white",
                   borderRadius: "4px",
                 },
               }}

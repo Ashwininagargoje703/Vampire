@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
-import logo from "./../../Components/assest/logo2.png";
+import logo from "./../../Components/assest/LogoNew.png";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -74,6 +74,8 @@ export default function ForgotPassword() {
           style={{ height: "150px", width: "250px", cursor: "pointer" }}
         />
       </Link>
+      <br />
+
       <Box display={"flex"} mb={3} gap={1} pl={2}>
         <PersonOutlineIcon style={{ fontSize: 30, color: "#004c3d" }} />
         <Typography fontSize={18}>Forgot Password </Typography>
@@ -236,8 +238,8 @@ export default function ForgotPassword() {
         alignItems: "center",
         height: "100vh",
         width: "100%",
-        background:
-          "linear-gradient(rgba(154, 205, 50, 0.7), rgba(154, 205, 50, 0.7))",
+        backgroundImage:
+          "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPx6pqf2yUuWJvEkpuJ2oSxYNNalUgTrTA2qzBN08V&s)",
       }}
     >
       <Box>
@@ -257,14 +259,19 @@ export default function ForgotPassword() {
           alignItems: "center",
         }}
       >
-        <img
-          src={logo}
-          alt="logo"
-          style={{
-            marginTop: "-30px",
-            maxHeight: "200px",
-          }}
-        />
+        <Link to="/home">
+          {" "}
+          <img
+            src={logo}
+            alt="logo"
+            style={{ height: "100px", cursor: "pointer" }}
+          />
+        </Link>
+
+        <br />
+        <br />
+        <br />
+
         <Box display={"flex"} mb={3} gap={1}>
           <PersonOutlineIcon style={{ fontSize: 30, color: "#004c3d" }} />
           <Typography fontSize={18}>Forgot Password </Typography>

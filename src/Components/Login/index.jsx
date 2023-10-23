@@ -6,10 +6,9 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import React, { useState } from "react";
-import logo from "./../../Components/assest/logo2.png";
+import logo from "./../../Components/assest/LogoNew.png";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import axios from "axios";
-// import { useNavigate } from "react-router";
 import { Link, useNavigate } from "react-router-dom";
 import SwipeableTextMobileStepper from "../slider";
 import { backend_url } from "../../http-backend";
@@ -62,7 +61,7 @@ export default function Login() {
         <img
           src={logo}
           alt="logo"
-          style={{ height: "150px", width: "250px", cursor: "pointer" }}
+          style={{ height: "200px", cursor: "pointer" }}
         />
       </Link>
       <Box display={"flex"} mb={3} gap={1} pl={2}>
@@ -148,8 +147,8 @@ export default function Login() {
         alignItems: "center",
         height: "100vh",
         width: "100%",
-        background:
-          "linear-gradient(rgba(154, 205, 50, 0.7), rgba(154, 205, 50, 0.7))",
+        backgroundImage:
+          "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPx6pqf2yUuWJvEkpuJ2oSxYNNalUgTrTA2qzBN08V&s)",
       }}
     >
       <Box>
@@ -169,14 +168,15 @@ export default function Login() {
           alignItems: "center",
         }}
       >
-        <img
-          src={logo}
-          alt="logo"
-          style={{
-            marginTop: "-30px",
-            maxHeight: "200px",
-          }}
-        />
+        <Link to="/home">
+          {" "}
+          <img
+            src={logo}
+            alt="logo"
+            style={{ height: "100px", cursor: "pointer" }}
+          />
+        </Link>
+        <br />
         <Box display={"flex"} mb={3} gap={1}>
           <PersonOutlineIcon style={{ fontSize: 30, color: "#004c3d" }} />
           <Typography fontSize={18}>Sign In</Typography>

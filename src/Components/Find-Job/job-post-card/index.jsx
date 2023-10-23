@@ -135,6 +135,14 @@ const JobPostCard = ({ searchResults, setSearchResults }) => {
   // };
   const isMobile = useMediaQuery("(max-width: 600px)");
 
+  const handleJobApply = () => {
+    if (!userId) {
+      navigate("/login");
+    } else {
+      navigate("/apply-for-job");
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -163,7 +171,7 @@ const JobPostCard = ({ searchResults, setSearchResults }) => {
             sx={{
               p: 2,
               mb: 2,
-              border: "1px solid #d4d2d0",
+              border: "1px solid #004c3d",
               width: isMobile ? "100%" : "960px",
               flexDirection: "column",
             }}
@@ -234,6 +242,22 @@ const JobPostCard = ({ searchResults, setSearchResults }) => {
 
             <Button onClick={() => handleJobClick(data?._id)}>
               <JobDetailsDialogs title={data?.title} />
+            </Button>
+
+            <Button
+              onClick={handleJobApply}
+              sx={{
+                color: "white",
+                backgroundColor: "#004c3d",
+                textTransform: "none",
+                ":hover": {
+                  color: "white",
+                  backgroundColor: "#004c3d",
+                  textTransform: "none",
+                },
+              }}
+            >
+              Apply Now
             </Button>
           </Card>
         ))}

@@ -54,7 +54,7 @@ function NavbarApp(props) {
             component={RouterLink}
             to="/"
           >
-            Find salaries
+            Quize
           </Button>
 
           <Button
@@ -158,9 +158,9 @@ function NavbarApp(props) {
             <Button
               sx={{ color: "#fff", textTransform: "none", fontSize: 16, ml: 4 }}
               component={RouterLink}
-              to="/"
+              to="/quize"
             >
-              Find salaries
+              Quize
             </Button>
 
             <Button
