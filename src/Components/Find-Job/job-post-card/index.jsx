@@ -135,6 +135,14 @@ const JobPostCard = ({ searchResults, setSearchResults }) => {
   // };
   const isMobile = useMediaQuery("(max-width: 600px)");
 
+  const handleJobApply = () => {
+    if (!userId) {
+      navigate("/login");
+    } else {
+      navigate("/apply-for-job");
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -147,7 +155,7 @@ const JobPostCard = ({ searchResults, setSearchResults }) => {
           background: "#F5F5F5" /* Set background color of scrollbar */,
         },
         "&::-webkit-scrollbar-thumb": {
-          backgroundColor: "yellowgreen" /* Set color of scrollbar thumb */,
+          backgroundColor: "#004c3d" /* Set color of scrollbar thumb */,
         },
       }}
     >
@@ -163,7 +171,7 @@ const JobPostCard = ({ searchResults, setSearchResults }) => {
             sx={{
               p: 2,
               mb: 2,
-              border: "1px solid #d4d2d0",
+              border: "1px solid #004c3d",
               width: isMobile ? "100%" : "960px",
               flexDirection: "column",
             }}
@@ -201,11 +209,11 @@ const JobPostCard = ({ searchResults, setSearchResults }) => {
               <Button
                 sx={{
                   color: "white",
-                  backgroundColor: "#9acd32",
+                  backgroundColor: "#004c3d",
                   textTransform: "none",
                   ":hover": {
                     color: "white",
-                    backgroundColor: "#9acd32",
+                    backgroundColor: "#004c3d",
                     textTransform: "none",
                   },
                 }}
@@ -218,11 +226,11 @@ const JobPostCard = ({ searchResults, setSearchResults }) => {
               <Button
                 sx={{
                   color: "white",
-                  backgroundColor: "#9acd32",
+                  backgroundColor: "#004c3d",
                   textTransform: "none",
                   ":hover": {
                     color: "white",
-                    backgroundColor: "#9acd32",
+                    backgroundColor: "#004c3d",
                     textTransform: "none",
                   },
                 }}
@@ -235,6 +243,22 @@ const JobPostCard = ({ searchResults, setSearchResults }) => {
             <Button onClick={() => handleJobClick(data?._id)}>
               <JobDetailsDialogs title={data?.title} />
             </Button>
+
+            <Button
+              onClick={handleJobApply}
+              sx={{
+                color: "white",
+                backgroundColor: "#004c3d",
+                textTransform: "none",
+                ":hover": {
+                  color: "white",
+                  backgroundColor: "#004c3d",
+                  textTransform: "none",
+                },
+              }}
+            >
+              Apply Now
+            </Button>
           </Card>
         ))}
       </Box>
@@ -245,7 +269,7 @@ const JobPostCard = ({ searchResults, setSearchResults }) => {
         onClose={handleSnackbarClose}
       >
         <SnackbarContent
-          style={{ backgroundColor: "#9acd32" }} // Adjust the background color here
+          style={{ backgroundColor: "#004c3d" }} // Adjust the background color here
           message="Job saved successfully"
         />
       </Snackbar>

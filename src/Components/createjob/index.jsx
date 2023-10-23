@@ -293,9 +293,9 @@ const Createjob = () => {
         <Button
           onSubmit={handleSubmit}
           sx={{
-            backgroundColor: "yellowgreen",
+            backgroundColor: "#004c3d",
             borderRadius: "4px",
-            border: "1px solid yellowgreen",
+            border: "1px solid #004c3d",
             color: "white",
             mt: 4,
             p: 1.2,
@@ -310,8 +310,8 @@ const Createjob = () => {
               fontWeight: 600,
               pl: 8,
               backgroundColor: "white",
-              border: "1px solid yellowgreen",
-              color: "yellowgreen",
+              border: "1px solid #004c3d",
+              color: "#004c3d",
               borderRadius: "4px",
             },
           }}

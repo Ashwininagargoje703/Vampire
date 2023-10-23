@@ -71,10 +71,12 @@ function SwipeableTextMobileStepper() {
           <div key={index} style={{ bgcolor: "transparent" }}>
             {Math.abs(activeStep - index) <= 2 ? (
               <Box p={2}>
-                <Typography sx={{ fontSize: 32, color: "#1d824c" }}>
+                <Typography sx={{ fontSize: 32, color: "white" }}>
                   {step.label}
                 </Typography>
-                <Typography>{step.imgPath}</Typography>
+                <Typography sx={{ color: "whitesmoke" }}>
+                  {step.imgPath}
+                </Typography>
               </Box>
             ) : null}
           </div>

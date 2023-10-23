@@ -33,11 +33,11 @@ export default function JobDetailsDialogs({ title }) {
       <Button
         sx={{
           color: "white",
-          backgroundColor: "#9acd32",
+          backgroundColor: "#004c3d",
           textTransform: "none",
           ":hover": {
             color: "white",
-            backgroundColor: "#9acd32",
+            backgroundColor: "#004c3d",
             textTransform: "none",
           },
         }}
@@ -76,7 +76,7 @@ export default function JobDetailsDialogs({ title }) {
               background: "#F5F5F5" /* Set background color of scrollbar */,
             },
             "&::-webkit-scrollbar-thumb": {
-              backgroundColor: "yellowgreen" /* Set color of scrollbar thumb */,
+              backgroundColor: "#004c3d" /* Set color of scrollbar thumb */,
             },
           }}
         >

@@ -1,4 +1,7 @@
+import QuizePageRoute from "./Quize-page/QuizePage";
+import ApplyPageRoute from "./apply-form-page/ApplyPageRoute";
 import CometChatPageRoute from "./comet-chat-page/cometChatPageRoute";
+import CompanyReviewPageRoute from "./company-reviews-page/CompanyReviewPageRoute";
 import ForgotPasswordRoute from "./forgot-password/ForgotPasswordRoute";
 import HomePageRoute from "./home-page/HomepageRoute";
 import JobDetailsPageRoute from "./job-details-page/JobDetailsPageRoute";
@@ -18,6 +21,9 @@ const ROUTES = [
   ForgotPasswordRoute,
   SavedPageRoute,
   RegisterPageRoute,
+  CompanyReviewPageRoute,
+  QuizePageRoute,
+  ApplyPageRoute,
 ];
 
 export default ROUTES;

@@ -3,8 +3,8 @@ import { LinkedIn, Facebook, Twitter } from "@mui/icons-material";
 
 const styles = {
   container: {
-    background:
-      "linear-gradient(45deg, rgba(255, 255, 0, 0.8), rgba(0, 128, 0, 0.8))",
+    background: "#004c3d",
+    color: "white",
     py: 4,
   },
   iconContainer: {
@@ -14,17 +14,18 @@ const styles = {
     marginTop: "16px",
   },
   icon: {
-    background: "linear-gradient(45deg, yellow, green)",
+    background: "white",
     borderRadius: "50%",
     width: "48px",
     height: "48px",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    color: "#fff",
+    color: "#004c3d",
     transition: "background-color 0.3s",
     "&:hover": {
-      background: "linear-gradient(45deg, yellow, darkgreen)",
+      background: "white",
+      color: "#004c3d",
     },
   },
 };

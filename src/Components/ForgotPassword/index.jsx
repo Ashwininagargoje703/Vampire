@@ -1,9 +1,15 @@
-import { Box, Button, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  TextField,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import React, { useState } from "react";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
-import logo from "./../../Components/assest/logo2.png";
+import logo from "./../../Components/assest/LogoNew.png";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import SwipeableTextMobileStepper from "../slider";
 export default function ForgotPassword() {
@@ -48,8 +54,182 @@ export default function ForgotPassword() {
       setIsError(true);
     }
   };
+  const isMobile = useMediaQuery("(max-width: 600px)");
 
-  return (
+  return isMobile ? (
+    <Box
+      sx={{
+        backgroundColor: "white",
+        width: "100%",
+        textAlign: "center",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Link to="/home">
+        {" "}
+        <img
+          src={logo}
+          alt="logo"
+          style={{ height: "150px", width: "250px", cursor: "pointer" }}
+        />
+      </Link>
+      <br />
+
+      <Box display={"flex"} mb={3} gap={1} pl={2}>
+        <PersonOutlineIcon style={{ fontSize: 30, color: "#004c3d" }} />
+        <Typography fontSize={18}>Forgot Password </Typography>
+      </Box>
+
+      <Box component="form" display={"grid"} gap={3} p={2}>
+        <Box display={"flex"} gap={2}>
+          <TextField
+            onChange={(e) => setUserName(e.target.value)}
+            id="outlined-multiline-flexible"
+            label="User name"
+            sx={{ width: "69%" }}
+          />
+
+          <Button
+            disabled={!userName.length}
+            onClick={handleSendOtp}
+            sx={{
+              backgroundColor: "#004c3d",
+              borderRadius: "4px",
+              color: "white",
+              p: 1.2,
+              fontSize: 14,
+              fontWeight: 600,
+              textTransform: "none",
+
+              "&:hover": {
+                backgroundColor: "#004c3d",
+                borderRadius: "4px",
+                color: "black",
+                p: 1.2,
+
+                fontWeight: 600,
+              },
+            }}
+          >
+            Send OTP
+          </Button>
+        </Box>
+        {isOtpSend && (
+          <Box display={"flex"} gap={2}>
+            <TextField
+              onChange={(e) => setOtp(e.target.value)}
+              id="outlined-multiline-flexible"
+              label="Enter Otp"
+              sx={{ width: "69%" }}
+            />
+
+            <Button
+              onClick={handleVerifyOtp}
+              disabled={!otp.length}
+              sx={{
+                backgroundColor: "#004c3d",
+                borderRadius: "4px",
+                color: !isError ? "green !important" : "white !important",
+                width: "31%",
+                p: 1.2,
+                pr: 4,
+                pl: 4,
+                fontWeight: 600,
+                "&:hover": {
+                  backgroundColor: "#004c3d",
+                  borderRadius: "4px",
+                  color: "black",
+                  p: 1.2,
+                  pr: 4,
+                  pl: 4,
+                  fontWeight: 600,
+                },
+              }}
+            >
+              Verifiy
+            </Button>
+          </Box>
+        )}
+        {isVerified ? (
+          <Typography
+            fontSize={14}
+            display={"flex"}
+            mt={-3}
+            ml={0.3}
+            color={"green"}
+          >
+            Verified
+          </Typography>
+        ) : null}
+        {isError && (
+          <Typography
+            fontSize={14}
+            display={"flex"}
+            mt={-3}
+            ml={0.3}
+            color={"red"}
+          >
+            Invalid OTP
+          </Typography>
+        )}
+
+        <TextField
+          id="outlined-textarea"
+          onChange={(e) => setPassword(e.target.value)}
+          disabled={show}
+          label="Password"
+        />
+        <TextField
+          id="outlined-textarea"
+          onChange={(e) => setComfirmPassword(e.target.value)}
+          disabled={show}
+          label=" Confirm Password"
+        />
+        {confirmPassword && confirmPassword.length > 0 && (
+          <Typography
+            fontSize={14}
+            display={"flex"}
+            mt={-3}
+            ml={0.3}
+            color={password === confirmPassword ? "green" : "red"}
+          >
+            {password === confirmPassword ? "Matched" : "Not Matched"}
+          </Typography>
+        )}
+      </Box>
+
+      <Box>
+        <Button
+          disabled={show}
+          sx={{
+            backgroundColor: "#004c3d",
+            borderRadius: "4px",
+            color: "white",
+            mt: 4,
+            p: 1.2,
+            pr: 8,
+            pl: 8,
+            fontWeight: 600,
+
+            "&:hover": {
+              mt: 4,
+              p: 1.2,
+              pr: 8,
+              fontWeight: 600,
+              pl: 8,
+              backgroundColor: "white",
+              border: "1px solid #004c3d",
+              color: "#004c3d",
+              borderRadius: "4px",
+            },
+          }}
+        >
+          Submit
+        </Button>
+      </Box>
+    </Box>
+  ) : (
     <Box
       sx={{
         position: "relative",
@@ -58,8 +238,8 @@ export default function ForgotPassword() {
         alignItems: "center",
         height: "100vh",
         width: "100%",
-        background:
-          "linear-gradient(rgba(154, 205, 50, 0.7), rgba(154, 205, 50, 0.7))",
+        backgroundImage:
+          "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPx6pqf2yUuWJvEkpuJ2oSxYNNalUgTrTA2qzBN08V&s)",
       }}
     >
       <Box>
@@ -79,16 +259,21 @@ export default function ForgotPassword() {
           alignItems: "center",
         }}
       >
-        <img
-          src={logo}
-          alt="logo"
-          style={{
-            marginTop: "-30px",
-            maxHeight: "200px",
-          }}
-        />
+        <Link to="/home">
+          {" "}
+          <img
+            src={logo}
+            alt="logo"
+            style={{ height: "100px", cursor: "pointer" }}
+          />
+        </Link>
+
+        <br />
+        <br />
+        <br />
+
         <Box display={"flex"} mb={3} gap={1}>
-          <PersonOutlineIcon style={{ fontSize: 30, color: "yellowgreen" }} />
+          <PersonOutlineIcon style={{ fontSize: 30, color: "#004c3d" }} />
           <Typography fontSize={18}>Forgot Password </Typography>
         </Box>
 
@@ -110,7 +295,7 @@ export default function ForgotPassword() {
               disabled={!userName.length}
               onClick={handleSendOtp}
               sx={{
-                backgroundColor: "yellowgreen",
+                backgroundColor: "#004c3d",
                 borderRadius: "4px",
                 width: "31%",
                 color: "white",
@@ -120,7 +305,7 @@ export default function ForgotPassword() {
                 fontWeight: 600,
 
                 "&:hover": {
-                  backgroundColor: "yellowgreen",
+                  backgroundColor: "#004c3d",
                   borderRadius: "4px",
                   color: "black",
                   p: 1.2,
@@ -146,7 +331,7 @@ export default function ForgotPassword() {
                 onClick={handleVerifyOtp}
                 disabled={!otp.length}
                 sx={{
-                  backgroundColor: "yellowgreen",
+                  backgroundColor: "#004c3d",
                   borderRadius: "4px",
                   color: !isError ? "green !important" : "white !important",
                   width: "31%",
@@ -155,7 +340,7 @@ export default function ForgotPassword() {
                   pl: 4,
                   fontWeight: 600,
                   "&:hover": {
-                    backgroundColor: "yellowgreen",
+                    backgroundColor: "#004c3d",
                     borderRadius: "4px",
                     color: "black",
                     p: 1.2,
@@ -221,7 +406,7 @@ export default function ForgotPassword() {
           <Button
             disabled={show}
             sx={{
-              backgroundColor: "yellowgreen",
+              backgroundColor: "#004c3d",
               borderRadius: "4px",
               color: "white",
               mt: 4,
@@ -237,8 +422,8 @@ export default function ForgotPassword() {
                 fontWeight: 600,
                 pl: 8,
                 backgroundColor: "white",
-                border: "1px solid yellowgreen",
-                color: "yellowgreen",
+                border: "1px solid #004c3d",
+                color: "#004c3d",
                 borderRadius: "4px",
               },
             }}

@@ -1,12 +1,12 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Typography, useMediaQuery } from "@mui/material";
 import React, { useState } from "react";
-// import "./styles.css";
-import { GoogleLogin, GoogleLogout } from "react-google-login";
+import Typewriter from "typewriter-effect";
 
 function FirstCardPage() {
   const handleChange = () => {
     window.location.href = "/jobsearch";
   };
+  const isMobile = useMediaQuery("(max-width: 600px)");
 
   return (
     <Box
@@ -21,12 +21,22 @@ function FirstCardPage() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        p: 2,
       }}
     >
       <Box textAlign={"center"}>
-        <Typography fontSize={40} fontWeight={600}>
-          The Easiest Way to Get Your New Job
-        </Typography>
+        <Typewriter
+          options={{
+            strings: [
+              `<span style="font-size:28px"; "font-Weight:600">The Easiest Way to Get Your New Job</span>`,
+              `<span style="font-size:28px"; "font-Weight:600">The Easiest Way to Save Money and Achieve Financial Goals</span>`,
+              `<span style="font-size:28px"; "font-Weight:600">The Easiest Way to Find Your Dream Home</span>`,
+            ],
+
+            autoStart: true,
+            loop: true,
+          }}
+        />
         <Typography fontSize={20}>
           Find jobs, create trackable resumes and enrich your applications.
         </Typography>
@@ -35,13 +45,13 @@ function FirstCardPage() {
           <Button
             onClick={handleChange}
             sx={{
-              backgroundColor: "yellowgreen",
+              backgroundColor: "#004c3d",
               color: "white",
-              width: 800,
+              width: isMobile ? "100%" : 800,
               p: 1.2,
               fontWeight: 600,
               "&:hover": {
-                backgroundColor: "yellowgreen",
+                backgroundColor: "#004c3d",
                 color: "white",
               },
             }}

@@ -6,8 +6,10 @@ import JobListing from "../../Components/JobListing";
 import { Box } from "@mui/material";
 import CreatePostForm from "../../Components/createjob";
 import NavbarApp from "../../Components/navbar";
+import Quiz from "../../Components/Quize";
+import ApplyForm from "../../Components/Find-Job/Apply";
 
-function JobDetailsPage() {
+function ApplyFormPage() {
   return (
     <>
       <Box sx={{ position: "fixed", top: 0, zIndex: 99999, width: "100%" }}>
@@ -17,11 +19,9 @@ function JobDetailsPage() {
       <br />
       <br />
       <br />
-
-      <CreatePostForm />
-      {/* <JobListing /> */}
+      <ApplyForm />
     </>
   );
 }
 
-export default JobDetailsPage;
+export default ApplyFormPage;

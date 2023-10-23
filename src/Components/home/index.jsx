@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 import React, { useState } from "react";
 import FirstCardPage from "./first_card";
 import SecondCardPage from "./second_card";
@@ -9,6 +9,8 @@ import Footer from "../Footer";
 import NavbarApp from "../navbar";
 
 function HomePage() {
+  const isMobile = useMediaQuery("(max-width: 600px)");
+
   return (
     <Box
       sx={{
@@ -16,7 +18,14 @@ function HomePage() {
       }}
     >
       <Box>
-        <Box sx={{ position: "fixed", top: 0, width: "100%" }}>
+        <Box
+          sx={{
+            position: "fixed",
+            top: 0,
+            width: "100%",
+            zIndex: isMobile ? "" : 9999,
+          }}
+        >
           <NavbarApp />
         </Box>
         <FirstCardPage />
